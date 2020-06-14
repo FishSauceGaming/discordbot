@@ -1,0 +1,13 @@
+{
+  "name": "greeter-bot",
+  "version": "1.0.0",
+  "description": "Feeeeesh Saaawce",
+  "main": "bot.js",
+  "author": "fishsauce",
+  "dependencies": {
+    "-": "0.0.1",
+    "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+    "save": "^2.4.0",
+    "winston": "^3.2.1"
+  }
+}
