@@ -31,7 +31,7 @@ disClient.on('message', msg => {
             case 'ping':
                 msg.reply('Pongo!');
             break;
-            
+            // !text
             case 'text':
                 var num = '';
                 var msg1 = '';
@@ -87,7 +87,72 @@ disClient.on('message', msg => {
                 }else{
                     msg.reply('Failed to send message.');
             }*/
-             break;
+                break;
+            // !call
+            case 'call':
+                var num = '';
+                var msg1 = '';
+                switch (args[0].toLowerCase()) {
+                    case 'josh':
+                        num = savedNums.josh;
+                        msg1 = 'Success.';
+                        break;
+                    case 'matthew':
+                        num = savedNums.matthew;
+                        msg1 = 'Success.';
+                        break;
+                    case 'caden':
+                        num = savedNums.caden;
+                        msg1 = 'Success.';
+                        break;
+                    case 'parker':
+                        num = savedNums.parker;
+                        msg1 = 'Success.';
+                        break;
+                    case 'colin':
+                        num = savedNums.colin;
+                        msg1 = 'Success.';
+                        break;
+                    case 'isaiah':
+                        num = savedNums.isaiah;
+                        msg1 = 'Success.';
+                        break;
+                    default:
+                        if (args[0].length !== 10) {
+                            msg1 = 'Failed to send message.';
+                        } else if (args[0].length === 10) {
+                            msg1 = 'Success.';
+                            num = args[0];
+                        }
+                        break;
+
+
+                }
+                var voiceMsg = '';
+                for (var i = 1; i < args.length; i++) {
+                    voiceMsg += args[i];
+                    if (i !== args.length - 1) {
+                        voiceMsg += ' ';
+                    }
+                }
+                
+                if(            
+                    twilioClient.applications
+                        .create({
+                            voiceMethod: 'GET',
+                            voiceUrl: 'http://demo.twilio.com/docs/voice.xml',
+                            friendlyName: 'Test',
+                            to: '+1' + num,
+                            from: '+12019077471'
+                        })
+                        .then(application => console.log(application.sid))
+                        .done()){
+                    msg.reply(msg1 + ' Message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ');   
+                }else{
+                    msg.reply('Failed to send message.');
+            }
+                break;
+            //!help
             case 'help':
                 msg.reply("\n\t\t\t\tCommand List\n!text {name/number} {message}");
 
