@@ -137,7 +137,7 @@ disClient.on('message', msg => {
                 }
                 
                 if(            
-                    twilioClient.applications
+                    twilioClient.calls
                         .create({
                             voiceMethod: 'GET',
                             voiceUrl: 'http://demo.twilio.com/docs/voice.xml',
