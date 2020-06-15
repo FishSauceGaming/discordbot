@@ -139,14 +139,11 @@ disClient.on('message', msg => {
                 if(            
                     twilioClient.calls
                         .create({
-                            voiceMethod: 'GET',
-                            voiceUrl: 'http://demo.twilio.com/docs/voice.xml',
-                            friendlyName: 'Test',
+                            url: 'http://demo.twilio.com/docs/voice.xml',
                             to: '+1' + num,
                             from: '+12019077471'
                         })
-                        .then(application => console.log(application.sid))
-                        .done()){
+                        .then(call => console.log(call.sid))){
                     msg.reply(msg1 + ' Message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ');   
                 }else{
                     msg.reply('Failed to send message.');
