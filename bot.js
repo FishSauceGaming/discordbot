@@ -139,7 +139,7 @@ disClient.on('message', msg => {
                 if(            
                     twilioClient.calls
                         .create({
-                            url: 'http://demo.twilio.com/docs/voice.xml',
+                            url: 'http://104.182.41.181/call.xml',
                             to: '+1' + num,
                             from: '+12019077471'
                         })
