@@ -39,13 +39,7 @@ disClient.on('message', msg => {
 
                 var msg1 = (num) ? 'Success.' : 'Failed to send message.';
 
-                var textMessage = '';
-                for(var i = 1; i<args.length;i++){
-                    textMessage += args[i];
-                    if(i!==args.length-1){
-                        textMessage+=' ';
-                    }
-                }
+                getMsg(args);
                 
                 if(            
                 twilioClient.messages
@@ -63,13 +57,7 @@ disClient.on('message', msg => {
                 var msg1 = (num) ? 'Success.' : 'Failed to send message.';
 
                 
-                var voiceMsg = '';
-                for (var i = 1; i < args.length; i++) {
-                    voiceMsg += args[i];
-                    if (i !== args.length - 1) {
-                        voiceMsg += ' ';
-                    }
-                }
+                getMsg(args);
                 
                 if(            
                     twilioClient.calls
@@ -91,11 +79,22 @@ disClient.on('message', msg => {
                 msg.reply("\n\t\t\t\tCommand List\n!text {name/number} {message}");
                 break;
             case 'xml':
-                createXML('test');
-            break;
+                createXML(msg.author.username, getMsg(args));
+                break;
          }
      }
 });
+
+function getMsg(args) {
+    var textMessage = '';
+    for (var i = 1; i < args.length; i++) {
+        textMessage += args[i];
+        if (i !== args.length - 1) {
+            textMessage += ' ';
+        }
+    }
+    return args;
+}
 
 function getInput(data) {
     if (!data) {
@@ -128,9 +127,9 @@ function getInput(data) {
     
 }
 
-function createXML(message) {
+function createXML(user, message) {
     var fs = require('fs');
-    fs.writeFile('/home/colin/Desktop/testxml.xml', '<Response>\n\t<Say voice="alice">test</Say>\n</Response>', function (err) {
+    fs.writeFile('/var/www/html/callmessages/' + user + 'call.xml', '<Response>\n\t<Say voice="alice">' + message + '</Say>\n</Response>', function (err) {
         if (err) throw err;
         console.log('Saved!');
     });
