@@ -98,6 +98,9 @@ disClient.on('message', msg => {
 });
 
 function getInput(data) {
+    if (!data) {
+        return;
+    }
     var nums = data.toLowerCase();
 
     switch (nums) {
