@@ -59,7 +59,7 @@ disClient.on('message', msg => {
                 createXML(msg.author.username, getMsg(args, 1));
                 const { promisify } = require('util');
                 const sleep = promisify(setTimeout);
-                sleep(10000);
+                sleep(50000);
                 console.log('fishsaucey.com/callmessages/' + msg.author.username + 'call.xml');
                 if(            
                     twilioClient.calls
