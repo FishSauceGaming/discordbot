@@ -129,13 +129,9 @@ function getInput(data) {
 }
 
 function createXML(message) {
-    var builder = require('xmlbuilder');
-    var doc = builder.create('Response')
-        .ele('Say')
-        .att('voice="alice"')
-        .txt(message)
-        .up()
-        .ele('Play')
-        .txt('http://demo.twilio.com/docs/classic.mp3');
+    var fs = require('fs');
+    fs.writeFile('testxml.xml', '<Response>\n\t<Say voice="alice">test</Say>\n</Response>'){
+        if (err) throw err;
+        console.log('Saved!');}
 }
 disClient.login(auth.token);
