@@ -75,7 +75,7 @@ disClient.on('message', msg => {
                 break;
             //!help
             case 'help':
-                msg.reply("\n\t\t\t\tCommand List\n!text {name/number} {message}");
+                msg.reply("\n\t\t\t\tCommand List\n!text {name/number} {message}\n!call {number/name} {message}");
                 break;
             //!xml
             case 'xml':
