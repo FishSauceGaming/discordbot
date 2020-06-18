@@ -79,7 +79,7 @@ disClient.on('message', msg => {
                             from: '+12019077471'
                         })
                         .then(call => console.log(call.sid))){
-                    msg.reply(msg1 + ' Message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ' + num);   
+                    msg.reply(msg1 + ' Message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ');   
                 }else{
                     msg.reply('Failed to send message.');
             }
