@@ -31,7 +31,7 @@ disClient.on('message', msg => {
         switch(cmd) {
             // !ping
             case 'ping':
-                msg.reply('Pongo!');
+                msg.reply('Pong!');
             break;
             // !text
             case 'text':
@@ -78,8 +78,10 @@ disClient.on('message', msg => {
                             to: '+1' + num,
                             from: '+12019077471'
                         })
-                        .then(call => console.log(call.sid))){
-                    msg.reply(msg1 + ' Message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ');   
+                        .then(call => console.log(call.sid))) {
+                    if (msg1) {
+                        msg.reply(msg1 + ' Message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ');  
+                    }
                 }else{
                     msg.reply('Failed to send message.');
             }
@@ -87,7 +89,9 @@ disClient.on('message', msg => {
             //!help
             case 'help':
                 msg.reply("\n\t\t\t\tCommand List\n!text {name/number} {message}");
-
+                break;
+            case 'xml':
+                createXML('test');
             break;
          }
      }
@@ -98,25 +102,18 @@ function getInput(data) {
     switch (nums) {
         case 'josh':
             return savedNums.josh;
-            break;
         case 'matthew':
             return savedNums.matthew;
-            break;
         case 'caden':
             return savedNums.caden;
-            break;
         case 'parker':
             return savedNums.parker;
-            break;
         case 'colin':
             return savedNums.colin;
-            break;
         case 'isaiah':
             return savedNums.isaiah;
-            break;
         case 'will':
             return savedNums.will;
-            break;
         default:
             if (data.length !== 10) {
                 return 0;
@@ -125,5 +122,16 @@ function getInput(data) {
             }
     }
     
+}
+
+function createXML(message) {
+    var builder = require('xmlbuilder');
+    var doc = builder.create('Response')
+        .ele('Say')
+        .att('voice="alice"')
+        .txt(message)
+        .up()
+        .ele('Play')
+        .txt('http://demo.twilio.com/docs/classic.mp3');
 }
 disClient.login(auth.token);
