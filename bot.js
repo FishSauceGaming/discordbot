@@ -37,7 +37,7 @@ disClient.on('message', msg => {
             case 'text':
                 var num = getInput(args[0].toLowerCase);
 
-                var msg1 = (num) ? 'Success.' : 'Failed to send message.';
+                var msg1 = (num) ? 'Failed to send message.' : 'Success.';
 
                 var textMessage = '';
                 for(var i = 1; i<args.length;i++){
@@ -60,7 +60,7 @@ disClient.on('message', msg => {
             case 'call':
                 var num = getInput(args[0].toLowerCase);
 
-                var msg1 = (num) ? 'Success.' : 'Failed to send message.';
+                var msg1 = (num) ? 'Failed to send message.' : 'Success.';
 
                 
                 var voiceMsg = '';
