@@ -39,7 +39,7 @@ disClient.on('message', msg => {
 
                 var msg1 = (num) ? 'Success.' : 'Failed to send message.';
 
-                getMsg(args);
+                textMessage = getMsg(args);
                 
                 if(            
                 twilioClient.messages
@@ -53,16 +53,14 @@ disClient.on('message', msg => {
             // !call
             case 'call':
                 var num = getInput(args[0]);
-
                 var msg1 = (num) ? 'Success.' : 'Failed to send message.';
 
-                
-                getMsg(args);
+                createXML(msg.author.username, getMsg(args));
                 
                 if(            
                     twilioClient.calls
                         .create({
-                            url: 'http://fishsauce.serveminecraft.net/call.xml',
+                            url: 'fishsaucey.com/callmessages/' + msg.author.username + 'call.xml',
                             to: '+1' + num,
                             from: '+12019077471'
                         })
@@ -78,6 +76,7 @@ disClient.on('message', msg => {
             case 'help':
                 msg.reply("\n\t\t\t\tCommand List\n!text {name/number} {message}");
                 break;
+            //!xml
             case 'xml':
                 createXML(msg.author.username, getMsg(args));
                 break;
@@ -129,7 +128,7 @@ function getInput(data) {
 
 function createXML(user, message) {
     var fs = require('fs');
-    fs.writeFile('/var/www/html/callmessages/' + user + 'call.xml', '<Response>\n\t<Say voice="alice">' + message + '</Say>\n</Response>', function (err) {
+    fs.writeFile('/var/www/html/callmessages/' + user + 'call.xml', '<Response>\n\t<Say voice="alice">' + 'This is a call from '+ user + ' using BotSauce.' + message + '.The message has been concluded.'+'</Say>\n</Response>', function (err) {
         if (err) throw err;
         console.log('Saved!');
     });
