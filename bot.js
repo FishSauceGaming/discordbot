@@ -71,8 +71,7 @@ disClient.on('message', msg => {
                 }else{
                     msg.reply('Failed to send message.');
                 }
-                deleteXML(msg.author.username);
-                
+      
                 break;
             //!help
             case 'help':
