@@ -35,7 +35,7 @@ disClient.on('message', msg => {
             break;
             // !text
             case 'text':
-                var num = getInput(args[0].toLowerCase);
+                var num = getInput(args[0]);
 
                 var msg1 = (num) ? 'Success.' : 'Failed to send message.';
 
