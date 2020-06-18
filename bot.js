@@ -54,6 +54,7 @@ disClient.on('message', msg => {
             case 'call':
                 var num = getInput(args[0]);
                 var msg1 = (num) ? 'Success.' : 'Failed to send message.';
+ 
 
                 createXML(msg.author.username, getMsg(args, 2));
                 
@@ -92,7 +93,7 @@ function getMsg(args, start) {
             textMessage += ' ';
         }
     }
-    return args;
+    return textMessage;
 }
 
 function getInput(data) {
@@ -127,7 +128,6 @@ function getInput(data) {
 }
 
 function createXML(user, message) {
-    console.log(message);
     var fs = require('fs');
     fs.writeFile('/var/www/html/callmessages/' + user + 'call.xml', '<Response>\n\t<Say voice="alice">' + 'This is a call from '+ user + ' using BotSauce. ' + message + '. The message has been concluded.'+'</Say>\n</Response>', function (err) {
         if (err) throw err;
