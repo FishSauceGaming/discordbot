@@ -119,7 +119,7 @@ function getInput(data) {
             break;
         default:
             if (data.length !== 10) {
-                return data;
+                return 0;
             } else if (data.length === 10 && !isNaN(data)) {
                 return data;
             }
