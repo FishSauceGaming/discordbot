@@ -93,7 +93,7 @@ disClient.on('message', msg => {
      }
 });
 function getInput(data) {
-    var nums = data.toLowerCase;
+    var nums = data.toLowerCase();
 
     switch (nums) {
         case 'josh':
