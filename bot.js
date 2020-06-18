@@ -58,7 +58,7 @@ disClient.on('message', msg => {
                 break;
             // !call
             case 'call':
-                var num = getInput(args[0].toLowerCase);
+                var num = getInput(args[0]);
 
                 var msg1 = (num) ? 'Success.' : 'Failed to send message.';
 
@@ -93,8 +93,9 @@ disClient.on('message', msg => {
      }
 });
 function getInput(data) {
+    var nums = data.toLowerCase;
 
-    switch (data) {
+    switch (nums) {
         case 'josh':
             return savedNums.josh;
             break;
@@ -118,7 +119,7 @@ function getInput(data) {
             break;
         default:
             if (data.length !== 10) {
-                return data;
+                return 0;
             } else if (data.length === 10 && !isNaN(data)) {
                 return data;
             }
