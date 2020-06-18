@@ -130,8 +130,8 @@ function getInput(data) {
 
 function createXML(message) {
     var fs = require('fs');
-    fs.writeFile('testxml.xml', '<Response>\n\t<Say voice="alice">test</Say>\n</Response>'){
+    fs.writeFile('testxml.xml', '<Response>\n\t<Say voice="alice">test</Say>\n</Response>', function (err){
         if (err) throw err;
-        console.log('Saved!');}
-}
+        console.log('Saved!');
+});
 disClient.login(auth.token);
