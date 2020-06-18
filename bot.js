@@ -97,18 +97,25 @@ function getInput(data) {
     switch (data) {
         case 'josh':
             return savedNums.josh;
+            break;
         case 'matthew':
             return savedNums.matthew;
+            break;
         case 'caden':
             return savedNums.caden;
+            break;
         case 'parker':
             return savedNums.parker;
+            break;
         case 'colin':
             return savedNums.colin;
+            break;
         case 'isaiah':
             return savedNums.isaiah;
+            break;
         case 'will':
             return savedNums.will;
+            break;
         default:
             if (data.length !== 10) {
                 return 0;
