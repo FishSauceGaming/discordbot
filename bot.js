@@ -36,7 +36,6 @@ disClient.on('message', msg => {
             // !text
             case 'text':
                 var num = getInput(args[0]);
-
                 var msg1 = (num) ? 'Success.' : 'Failed to send message.';
 
                 textMessage = getMsg(args,1);
@@ -71,7 +70,9 @@ disClient.on('message', msg => {
                     }
                 }else{
                     msg.reply('Failed to send message.');
-            }
+                }
+                deleteXML(msg.author.username);
+                
                 break;
             //!help
             case 'help':
@@ -132,6 +133,14 @@ function createXML(user, message) {
     fs.writeFile('/var/www/html/callmessages/' + user + 'call.xml', '<Response>\n\t<Say voice="alice">' + 'This is a call from '+ user + ' using BotSauce. ' + message + '. The message has been concluded.'+'</Say>\n</Response>', function (err) {
         if (err) throw err;
         console.log('Saved!');
+    });
+}
+
+function deleteXML(user) {
+    var fs = require('fs');
+    fs.unlink('/var/www/html/callmessages/' + user + 'call.xml', function (err) {
+        if (err) throw err;
+        console.log('File deleted!');
     });
 }
 disClient.login(auth.token);
