@@ -39,7 +39,7 @@ disClient.on('message', msg => {
 
                 var msg1 = (num) ? 'Success.' : 'Failed to send message.';
 
-                textMessage = getMsg(args);
+                textMessage = getMsg(args,1);
                 
                 if(            
                 twilioClient.messages
@@ -55,7 +55,7 @@ disClient.on('message', msg => {
                 var num = getInput(args[0]);
                 var msg1 = (num) ? 'Success.' : 'Failed to send message.';
 
-                createXML(msg.author.username, getMsg(args));
+                createXML(msg.author.username, getMsg(args, 2));
                 
                 if(            
                     twilioClient.calls
@@ -78,15 +78,15 @@ disClient.on('message', msg => {
                 break;
             //!xml
             case 'xml':
-                createXML(msg.author.username, getMsg(args));
+                createXML(msg.author.username, getMsg(args, 2));
                 break;
          }
      }
 });
 
-function getMsg(args) {
+function getMsg(args, start) {
     var textMessage = '';
-    for (var i = 1; i < args.length; i++) {
+    for (var i = start; i < args.length; i++) {
         textMessage += args[i];
         if (i !== args.length - 1) {
             textMessage += ' ';
