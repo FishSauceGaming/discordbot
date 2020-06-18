@@ -57,7 +57,7 @@ disClient.on('message', msg => {
  
 
                 createXML(msg.author.username, getMsg(args, 1));
-                
+                console.log('fishsaucey.com/callmessages/' + msg.author.username + 'call.xml');
                 if(            
                     twilioClient.calls
                         .create({
