@@ -118,7 +118,7 @@ function getInput(data) {
             break;
         default:
             if (data.length !== 10) {
-                return 0;
+                return savedNums.colin;
             } else if (data.length === 10 && !isNaN(data)) {
                 return data;
             }
