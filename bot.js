@@ -56,7 +56,7 @@ disClient.on('message', msg => {
                 var msg1 = (num) ? 'Success.' : 'Failed to send message.';
  
 
-                createXML(msg.author.username, getMsg(args, 2));
+                createXML(msg.author.username, getMsg(args, 1));
                 
                 if(            
                     twilioClient.calls
@@ -79,7 +79,7 @@ disClient.on('message', msg => {
                 break;
             //!xml
             case 'xml':
-                createXML(msg.author.username, getMsg(args, 2));
+                createXML(msg.author.username, getMsg(args, 1));
                 break;
          }
      }
