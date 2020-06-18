@@ -130,7 +130,7 @@ function getInput(data) {
 
 function createXML(message) {
     var fs = require('fs');
-    fs.writeFile('testxml.xml', '<Response>\n\t<Say voice="alice">test</Say>\n</Response>', function (err) {
+    fs.writeFile('/home/colin/Desktop/testxml.xml', '<Response>\n\t<Say voice="alice">test</Say>\n</Response>', function (err) {
         if (err) throw err;
         console.log('Saved!');
     });
