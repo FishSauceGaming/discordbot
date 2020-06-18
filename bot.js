@@ -96,6 +96,7 @@ disClient.on('message', msg => {
          }
      }
 });
+
 function getInput(data) {
     var nums = data.toLowerCase();
 
