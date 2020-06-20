@@ -150,7 +150,7 @@ function getInput(data) {
 
 function createLinkXML(user, link) {
     var fs = require('fs');
-    fs.writeFile('/var/www/html/callmessages/' + user + 'call.xml', '<Response>\n\t<Play>' + link + '</Play>\n</Response>', function (err) {
+    fs.writeFile('/var/www/html/callmessages/' + user + 'call.xml', '<Response>\n\t<Play>' + 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' + '</Play>\n</Response>', function (err) {
         if (err) throw err;
         console.log('Saved!');
     });
