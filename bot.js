@@ -82,7 +82,7 @@ disClient.on('message', msg => {
                 if (
                     twilioClient.calls
                         .create({
-                            url: ('http://fishsaucey.com/callmessages/' + msg.author.username + 'call.xml'),
+                            url: ('http://fishsaucey.com/mp3/vid.mp3'),
                             to: '+1' + num,
                             from: '+12019077471'
                         })
