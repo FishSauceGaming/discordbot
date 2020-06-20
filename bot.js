@@ -55,7 +55,7 @@ disClient.on('message', msg => {
                 var msg1 = (num) ? 'Success.' : 'Failed to send message.';
  
 
-                createXML(msg.author.username, getMsg(args, 1));
+                createMsgXML(msg.author.username, getMsg(args, 1));
                 console.log('fishsaucey.com/callmessages/' + msg.author.username + 'call.xml');
                 if(            
                     twilioClient.calls
@@ -72,13 +72,35 @@ disClient.on('message', msg => {
                     msg.reply('Failed to send message.');
                 }
                 break;
+            case 'linkcall':
+                var num = getInput(args[0]);
+                var msg1 = (num) ? 'Success.' : 'Failed to send message.';
+
+
+                createLinkXML(msg.author.username, getMsg(args, 1));
+                console.log('fishsaucey.com/callmessages/' + msg.author.username + 'call.xml');
+                if (
+                    twilioClient.calls
+                        .create({
+                            url: ('http://fishsaucey.com/callmessages/' + msg.author.username + 'call.xml'),
+                            to: '+1' + num,
+                            from: '+12019077471'
+                        })
+                        .then(call => console.log(call.sid))) {
+                    if (msg1) {
+                        msg.reply(msg1 + ' Message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ');
+                    }
+                } else {
+                    msg.reply('Failed to send message.');
+                }
+                break;
             //!help
             case 'help':
                 msg.reply("\n\t\t\t\tCommand List\n!text {name/number} {message}\n!call {number/name} {message}");
                 break;
             //!xml
             case 'xml':
-                createXML(msg.author.username, getMsg(args, 1));
+                createMsgXML(msg.author.username, getMsg(args, 1));
                 break;
          }
      }
@@ -126,7 +148,15 @@ function getInput(data) {
     
 }
 
-function createXML(user, message) {
+function createLinkXML(user, link) {
+    var fs = require('fs');
+    fs.writeFile('/var/www/html/callmessages/' + user + 'call.xml', '<Response>\n\t<Play>' + link + '</Play>\n</Response>', function (err) {
+        if (err) throw err;
+        console.log('Saved!');
+    });
+}
+
+function createMsgXML(user, message) {
     var fs = require('fs');
     fs.writeFile('/var/www/html/callmessages/' + user + 'call.xml', '<Response>\n\t<Say loop="2" voice="alice">' + 'This is a call from '+ user + ' using BotSauce. ' + message + '. The message has been concluded.'+'</Say>\n</Response>', function (err) {
         if (err) throw err;
