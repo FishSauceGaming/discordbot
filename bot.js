@@ -149,15 +149,6 @@ function getInput(data) {
 }
 
 function createLinkXML(user, link) {
-    link = link.replace("https", "http");
-    var fs = require('fs');
-    fs.writeFile('/var/www/html/callmessages/' + user + 'call.xml', '<Response>\n\t<Connect>\n\t\t<Stream url="ws://fishsaucey.com:44444" />\n\t</Connect>\n</Response>', function (err) {
-        if (err) throw err;
-        console.log('Saved!');
-    });
-}
-
-function createMsgXML(user, message) {
     const VoiceResponse = require('twilio').twiml.VoiceResponse;
     const response = new VoiceResponse();
     const connect = response.connect();
@@ -165,5 +156,13 @@ function createMsgXML(user, message) {
         url: 'ws://fishsaucey.com:44444'
     });
     console.log(response.toString());
+}
+
+function createMsgXML(user, message) {
+    var fs = require('fs');
+    fs.writeFile('/var/www/html/callmessages/' + user + 'call.xml', '<Response>\n\t<Say loop="2" voice="alice">' + 'This is a call from '+ user + ' using BotSauce. ' + message + '. The message has been concluded.'+'</Say>\n</Response>', function (err) {
+        if (err) throw err;
+        console.log('Saved!');
+    });
 }
 disClient.login(auth.token);
