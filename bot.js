@@ -3,11 +3,15 @@ var Discord = require('discord.js');
 var logger = require('winston');
 var auth = require('/home/colin/Desktop/discordbotjson/auth.json');
 var twilio = require('/home/colin/Desktop/discordbotjson/twilio.json');
+var nexmo = require('/home/colin/Desktop/discordbotjson/nexmo.json');
 var savedNums = require('/home/colin/Desktop/discordbotjson/numbers.json');
 
 const twilioAccountSid = twilio.sid;
 const twilioAuthToken = twilio.token;
 const twilioClient = require('twilio')(twilioAccountSid, twilioAuthToken);
+
+const nexmoApiKey = nexmo.apiKey;
+const nexmoApiSecret = nexmo.apiSecret;
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
@@ -164,4 +168,16 @@ function createMsgXML(user, message) {
         console.log('Saved!');
     });
 }
+
+function nexmo(user, message) {
+    const Nexmo = require('nexmo');
+
+    const nexmo = new Nexmo({
+        apiKey: nexmoApiKey,
+        apiSecret: nexmoApiSecret,
+    });
+
+    nexmo.message.sendSms('18654150700', '12563232653', 'TEST MAN, FIGHTER OF THE REAL MAN');
+}
+
 disClient.login(auth.token);
