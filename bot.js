@@ -149,13 +149,12 @@ function getInput(data) {
 }
 
 function createLinkXML(user, link) {
-    const VoiceResponse = require('twilio').twiml.VoiceResponse;
-    const response = new VoiceResponse();
-    const connect = response.connect();
-    connect.stream({
-        url: 'ws://fishsaucey.com:44444'
+    link = link.replace("https", "http");
+    var fs = require('fs');
+    fs.writeFile('/var/www/html/callmessages/' + user + 'call.xml', '<Response>\n\t<Connect>\n\t\t<Stream url="ws://fishsaucey.com:44444" />\n\t</Start>\n</Response>', function (err) {
+        if (err) throw err;
+        console.log('Saved!');
     });
-    console.log(response.toString());
 }
 
 function createMsgXML(user, message) {
