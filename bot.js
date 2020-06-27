@@ -179,8 +179,11 @@ function nexmodo(user, message) {
         apiKey: nexmoApiKey,
         apiSecret: nexmoApiSecret,
     });
+    const from = '18654150700';
+    const to = '12563232653';
+    const text = message;
 
-    nexmo.message.sendSms('18654150700', '12563232653', user + 'sent: ' + message);
+    nexmo.message.sendSms(from, to, text);
 }
 
 disClient.login(auth.token);
