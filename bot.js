@@ -3,15 +3,12 @@ var Discord = require('discord.js');
 var logger = require('winston');
 var auth = require('/home/colin/Desktop/discordbotjson/auth.json');
 var twilio = require('/home/colin/Desktop/discordbotjson/twilio.json');
-var nexmo = require('/home/colin/Desktop/discordbotjson/nexmo.json');
+var nexmoKeys = require('/home/colin/Desktop/discordbotjson/nexmo.json');
 var savedNums = require('/home/colin/Desktop/discordbotjson/numbers.json');
 
 const twilioAccountSid = twilio.sid;
 const twilioAuthToken = twilio.token;
 const twilioClient = require('twilio')(twilioAccountSid, twilioAuthToken);
-
-const nexmoApiKey = nexmo.apiKey;
-const nexmoApiSecret = nexmo.apiSecret;
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
@@ -175,9 +172,11 @@ function createMsgXML(user, message) {
 function nexmodo(user, message) {
     const Nexmo = require('nexmo');
 
+    console.log(nexmoKeys.nexmoApiKey);
+    console.log(nexmoKeys.nexmoApiSecret);
     const nexmo = new Nexmo({
-        api_key: nexmoApiKey,
-        api_secret: nexmoApiSecret,
+        apiKey: nexmoKeys.nexmoApiKey,
+        apiSecret: nexmoKeys.nexmoApiSecret,
     });
     const from = '18654150700';
     const to = '12563232653';
