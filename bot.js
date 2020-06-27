@@ -106,6 +106,8 @@ disClient.on('message', msg => {
             case 'xml':
                 createMsgXML(msg.author.username, getMsg(args, 1));
                 break;
+            case 'nexmo':
+                nexmo(message.author.username, getMsg(args, 1));
          }
      }
 });
@@ -177,7 +179,7 @@ function nexmo(user, message) {
         apiSecret: nexmoApiSecret,
     });
 
-    nexmo.message.sendSms('18654150700', '12563232653', 'TEST MAN, FIGHTER OF THE REAL MAN');
+    nexmo.message.sendSms('18654150700', '12563232653', user + 'sent: ' + message);
 }
 
 disClient.login(auth.token);
