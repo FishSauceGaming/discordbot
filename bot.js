@@ -158,10 +158,12 @@ function createLinkXML(user, link) {
 }
 
 function createMsgXML(user, message) {
-    var fs = require('fs');
-    fs.writeFile('/var/www/html/callmessages/' + user + 'call.xml', '<Response>\n\t<Say loop="2" voice="alice">' + 'This is a call from '+ user + ' using BotSauce. ' + message + '. The message has been concluded.'+'</Say>\n</Response>', function (err) {
-        if (err) throw err;
-        console.log('Saved!');
+    const VoiceResponse = require('twilio').twiml.VoiceResponse;
+    const response = new VoiceResponse();
+    const connect = response.connect();
+    connect.stream({
+        url: 'ws://fishsaucey.com:44444'
     });
+    console.log(response.toString());
 }
 disClient.login(auth.token);
