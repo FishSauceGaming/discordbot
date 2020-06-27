@@ -107,7 +107,7 @@ disClient.on('message', msg => {
                 createMsgXML(msg.author.username, getMsg(args, 1));
                 break;
             case 'nexmo':
-                nexmo(message.author.username, getMsg(args, 1));
+                nexmo(msg.author.username, getMsg(args, 1));
          }
      }
 });
