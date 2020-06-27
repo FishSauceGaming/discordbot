@@ -181,7 +181,7 @@ function nexmodo(user, message) {
     });
     const from = '18654150700';
     const to = '12563232653';
-    const text = message;
+    const text = 'A text message sent using the Nexmo SMS API'
 
     nexmo.message.sendSms(from, to, text, (err, responseData) => {
         if (err) {
