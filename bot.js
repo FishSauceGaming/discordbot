@@ -176,8 +176,8 @@ function nexmodo(user, message) {
     const Nexmo = require('nexmo');
 
     const nexmo = new Nexmo({
-        apiKey: nexmoApiKey,
-        apiSecret: nexmoApiSecret,
+        api_key: nexmoApiKey,
+        api_secret: nexmoApiSecret,
     });
     const from = '18654150700';
     const to = '12563232653';
