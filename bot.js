@@ -108,6 +108,7 @@ disClient.on('message', msg => {
                 break;
             case 'nexmo':
                 nexmodo(msg.author.username, getMsg(args, 1));
+                msg.reply('message sent');
          }
      }
 });
