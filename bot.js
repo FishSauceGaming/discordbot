@@ -107,7 +107,7 @@ disClient.on('message', msg => {
                 createMsgXML(msg.author.username, getMsg(args, 1));
                 break;
             case 'nexmo':
-                nexmo(msg.author.username, getMsg(args, 1));
+                nexmodo(msg.author.username, getMsg(args, 1));
          }
      }
 });
@@ -171,7 +171,7 @@ function createMsgXML(user, message) {
     });
 }
 
-function nexmo(user, message) {
+function nexmodo(user, message) {
     const Nexmo = require('nexmo');
 
     const nexmo = new Nexmo({
