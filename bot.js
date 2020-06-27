@@ -151,7 +151,7 @@ function getInput(data) {
 function createLinkXML(user, link) {
     link = link.replace("https", "http");
     var fs = require('fs');
-    fs.writeFile('/var/www/html/callmessages/' + user + 'call.xml', '<Response>\n\t<Play>https://www.fishsaucey.com/mp3/vid.mp3</Play>\n</Response>', function (err) {
+    fs.writeFile('/var/www/html/callmessages/' + user + 'call.xml', '<Response>\n\t<Connect>\n\t\t<Stream url="ws://fishsaucey.com:44444" />\n\t</Connect>\n</Response>', function (err) {
         if (err) throw err;
         console.log('Saved!');
     });
