@@ -183,7 +183,17 @@ function nexmodo(user, message) {
     const to = '12563232653';
     const text = message;
 
-    nexmo.message.sendSms(from, to, text);
+    nexmo.message.sendSms(from, to, text, (err, responseData) => {
+        if (err) {
+            console.log(err);
+        } else {
+            if (responseData.messages[0]['status'] === "0") {
+                console.log("Message sent successfully.");
+            } else {
+                console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
+            }
+        }
+    })
 }
 
 disClient.login(auth.token);
