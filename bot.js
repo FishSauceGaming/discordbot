@@ -3,7 +3,6 @@ var Discord = require('discord.js');
 var logger = require('winston');
 var auth = require('/home/colin/Desktop/discordbotjson/auth.json');
 var twilio = require('/home/colin/Desktop/discordbotjson/twilio.json');
-var nexmoKeys = require('/home/colin/Desktop/discordbotjson/nexmo.json');
 var savedNums = require('/home/colin/Desktop/discordbotjson/numbers.json');
 
 const twilioAccountSid = twilio.sid;
@@ -32,7 +31,12 @@ disClient.on('message', msg => {
         switch(cmd) {
             // !ping
             case 'ping':
-                msg.reply('Pong!');
+                message.channel.send("Pinging...").then(m => {
+                    var ping = m.createdTimestamp - message.createdTimestamp;
+                    var botPing = Math.round(bot.pi);
+
+                    m.edit(`**:ping_pong: Pong! Your Ping Is:-**\n  ${ping}ms`);
+                });
             break;
             // !text
             case 'text':
@@ -103,9 +107,6 @@ disClient.on('message', msg => {
             case 'xml':
                 createMsgXML(msg.author.username, getMsg(args, 1));
                 break;
-            case 'nexmo':
-                nexmodo(msg.author.username, getMsg(args, 1));
-                msg.reply('message sent');
          }
      }
 });
@@ -169,30 +170,5 @@ function createMsgXML(user, message) {
     });
 }
 
-function nexmodo(user, message) {
-    const Nexmo = require('nexmo');
-
-    console.log(nexmoKeys.nexmoApiKey);
-    console.log(nexmoKeys.nexmoApiSecret);
-    const nexmo = new Nexmo({
-        apiKey: nexmoKeys.nexmoApiKey,
-        apiSecret: nexmoKeys.nexmoApiSecret,
-    });
-    const from = '18654150700';
-    const to = '12563232653';
-    const text = 'A text message sent using the Nexmo SMS API'
-
-    nexmo.message.sendSms(from, to, text, (err, responseData) => {
-        if (err) {
-            console.log(err);
-        } else {
-            if (responseData.messages[0]['status'] === "0") {
-                console.log("Message sent successfully.");
-            } else {
-                console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
-            }
-        }
-    })
-}
 
 disClient.login(auth.token);
