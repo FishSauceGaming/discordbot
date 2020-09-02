@@ -31,7 +31,7 @@ disClient.on('message', msg => {
         switch(cmd) {
             // !ping
             case 'ping':
-                message.channel.send("Pinging...").then(m => {
+                msg.channel.send("Pinging...").then(m => {
                     var ping = m.createdTimestamp - message.createdTimestamp;
                     var botPing = Math.round(bot.pi);
 
