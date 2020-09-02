@@ -33,7 +33,6 @@ disClient.on('message', msg => {
             case 'ping':
                 msg.channel.send("Pinging...").then(m => {
                     var ping = m.createdTimestamp - msg.createdTimestamp;
-                    var botPing = Math.round(bot.pi);
 
                     m.edit(`**:ping_pong: Pong! Your Ping Is:-**\n  ${ping}ms`);
                 });
