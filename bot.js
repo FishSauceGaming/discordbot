@@ -23,91 +23,93 @@ disClient.on('ready', () => {
  });
 
 disClient.on('message', msg => {
-    if (msg.content.substring(0, 1) === '!') {
-        var args = msg.content.substring(1).split(' ');
-        var cmd = args[0];
-       
-        args = args.splice(1);
-        switch(cmd) {
-            // !ping
-            case 'ping':
-                msg.channel.send("Pinging...").then(m => {
-                    var ping = m.createdTimestamp - msg.createdTimestamp;
+    if (!msg.author.bot) {
+        if (msg.content.substring(0, 1) === '!') {
+            var args = msg.content.substring(1).split(' ');
+            var cmd = args[0];
 
-                    m.edit(`**:ping_pong: Pong! Your Ping Is:-**\n  ${ping}ms`);
-                });
-            break;
-            // !text
-            case 'text':
-                var num = getInput(args[0]);
-                var msg1 = (num) ? 'Success.' : 'Failed to send message.';
+            args = args.splice(1);
+            switch (cmd) {
+                // !ping
+                case 'ping':
+                    msg.channel.send("Pinging...").then(m => {
+                        var ping = m.createdTimestamp - msg.createdTimestamp;
 
-                textMessage = getMsg(args,1);
-                
-                if(            
-                twilioClient.messages
-                .create({body: msg.author.username + ' in \'' + msg.guild.name + '\' says: ' + textMessage + '. Please do not reply to this message.', from: '+12019077471', to: '+1' + num})
-                .then(message => console.log(message.sid))){
-                    msg.reply(msg1 + ' Message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ');   
-                }else{
-                    msg.reply('Failed to send message.');
-            }
-                break;
-            // !call
-            case 'call':
-                var num = getInput(args[0]);
-                var msg1 = (num) ? 'Success.' : 'Failed to send message.';
- 
+                        m.edit(`**:ping_pong: Pong! Your Ping Is:-**\n  ${ping}ms`);
+                    });
+                    break;
+                // !text
+                case 'text':
+                    var num = getInput(args[0]);
+                    var msg1 = (num) ? 'Success.' : 'Failed to send message.';
 
-                createMsgXML(msg.author.username, getMsg(args, 1));
-                console.log('fishsaucey.com/callmessages/' + msg.author.username + 'call.xml');
-                if(            
-                    twilioClient.calls
-                        .create({
-                            url: ('http://fishsaucey.com/callmessages/' + msg.author.username + 'call.xml'),
-                            to: '+1' + num,
-                            from: '+12019077471'
-                        })
-                        .then(call => console.log(call.sid))) {
-                    if (msg1) {
-                        msg.reply(msg1 + ' Message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ');  
-                    }
-                }else{
-                    msg.reply('Failed to send message.');
-                }
-                break;
-            case 'linkcall':
-                var num = getInput(args[0]);
-                var msg1 = (num) ? 'Success.' : 'Failed to send message.';
+                    textMessage = getMsg(args, 1);
 
-
-                createLinkXML(msg.author.username, getMsg(args, 1));
-                console.log('fishsaucey.com/callmessages/' + msg.author.username + 'call.xml');
-                if (
-                    twilioClient.calls
-                        .create({
-                            url: ('http://fishsaucey.com/callmessages/' + msg.author.username + 'call.xml'),
-                            to: '+1' + num,
-                            from: '+12019077471'
-                        })
-                        .then(call => console.log(call.sid))) {
-                    if (msg1) {
+                    if (
+                        twilioClient.messages
+                            .create({ body: msg.author.username + ' in \'' + msg.guild.name + '\' says: ' + textMessage + '. Please do not reply to this message.', from: '+12019077471', to: '+1' + num })
+                            .then(message => console.log(message.sid))) {
                         msg.reply(msg1 + ' Message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ');
+                    } else {
+                        msg.reply('Failed to send message.');
                     }
-                } else {
-                    msg.reply('Failed to send message.');
-                }
-                break;
-            //!help
-            case 'help':
-                msg.reply("\n\t\t\t\tCommand List\n!text {name/number} {message}\n!call {number/name} {message}");
-                break;
-            //!xml
-            case 'xml':
-                createMsgXML(msg.author.username, getMsg(args, 1));
-                break;
-         }
-     }
+                    break;
+                // !call
+                case 'call':
+                    var num = getInput(args[0]);
+                    var msg1 = (num) ? 'Success.' : 'Failed to send message.';
+
+
+                    createMsgXML(msg.author.username, getMsg(args, 1));
+                    console.log('fishsaucey.com/callmessages/' + msg.author.username + 'call.xml');
+                    if (
+                        twilioClient.calls
+                            .create({
+                                url: ('http://fishsaucey.com/callmessages/' + msg.author.username + 'call.xml'),
+                                to: '+1' + num,
+                                from: '+12019077471'
+                            })
+                            .then(call => console.log(call.sid))) {
+                        if (msg1) {
+                            msg.reply(msg1 + ' Message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ');
+                        }
+                    } else {
+                        msg.reply('Failed to send message.');
+                    }
+                    break;
+                case 'linkcall':
+                    var num = getInput(args[0]);
+                    var msg1 = (num) ? 'Success.' : 'Failed to send message.';
+
+
+                    createLinkXML(msg.author.username, getMsg(args, 1));
+                    console.log('fishsaucey.com/callmessages/' + msg.author.username + 'call.xml');
+                    if (
+                        twilioClient.calls
+                            .create({
+                                url: ('http://fishsaucey.com/callmessages/' + msg.author.username + 'call.xml'),
+                                to: '+1' + num,
+                                from: '+12019077471'
+                            })
+                            .then(call => console.log(call.sid))) {
+                        if (msg1) {
+                            msg.reply(msg1 + ' Message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ');
+                        }
+                    } else {
+                        msg.reply('Failed to send message.');
+                    }
+                    break;
+                //!help
+                case 'help':
+                    msg.reply("\n\t\t\t\tCommand List\n!text {name/number} {message}\n!call {number/name} {message}");
+                    break;
+                //!xml
+                case 'xml':
+                    createMsgXML(msg.author.username, getMsg(args, 1));
+                    break;
+            }
+        }
+    }
 });
 
 function getMsg(args, start) {
