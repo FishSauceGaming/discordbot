@@ -1,4 +1,3 @@
-
 var Discord = require('discord.js');
 var logger = require('winston');
 var auth = require('/home/colin/Desktop/discordbotjson/auth.json');
@@ -49,7 +48,9 @@ disClient.on('message', msg => {
                         twilioClient.messages
                             .create({ body: msg.author.username + ' in \'' + msg.guild.name + '\' says: ' + textMessage + '. Please do not reply to this message.', from: '+12019077471', to: '+1' + num })
                             .then(message => console.log(message.sid))) {
-                        msg.reply(msg1 + ' Message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ');
+                        if (msg1) {
+                            msg.reply(msg1 + ' Message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ');
+                        }
                     } else {
                         msg.reply('Failed to send message.');
                     }
