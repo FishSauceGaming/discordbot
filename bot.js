@@ -49,7 +49,11 @@ disClient.on('message', msg => {
                             .create({ body: msg.author.username + ' in \'' + msg.guild.name + '\' says: ' + textMessage + '. Please do not reply to this message.', from: '+12019077471', to: '+1' + num })
                             .then(message => console.log(message.sid))) {
                         if (msg1) {
-                            msg.reply(msg1 + ' Message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ');
+                            try {
+                                msg.reply(msg1 + ' Message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ');
+                            } catch {
+                                msg.reply(msg1 + ' Message sent by ' + msg.author.username);
+                            }
                         }
                     } else {
                         msg.reply('Failed to send message.');
@@ -99,7 +103,11 @@ disClient.on('message', msg => {
                             })
                             .then(call => console.log(call.sid))) {
                         if (msg1) {
-                            msg.reply(msg1 + ' Message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ');
+                            try {
+                                msg.reply(msg1 + ' Message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ');
+                            } catch {
+                                msg.reply(msg1 + ' Message sent by ' + msg.author.username);
+                            }
                         }
                     } else {
                         msg.reply('Failed to send message.');
