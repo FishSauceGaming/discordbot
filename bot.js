@@ -72,7 +72,12 @@ disClient.on('message', msg => {
                             })
                             .then(call => console.log(call.sid))) {
                         if (msg1) {
-                            msg.reply(msg1 + ' Message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ');
+                            try {
+                                msg.reply(msg1 + ' Message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ');
+                            } catch {
+                                msg.reply(msg1 + ' Message sent by ' + msg.author.username);
+                            }
+
                         }
                     } else {
                         msg.reply('Failed to send message.');
