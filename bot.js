@@ -126,7 +126,7 @@ disClient.on('message', msg => {
                     msg.reply("\n\t\t\t\tCommand List\n!text {name/number} {message}\n!call {number/name} {message}");
                     break;
                 case 'meme':
-                    img = await getRedditPost();
+                    img = getRedditPost();
                     msg.reply(img);
                     break;
                 //!xml
