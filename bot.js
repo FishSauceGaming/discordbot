@@ -204,8 +204,6 @@ async function getRedditPost(msg, sub) {
         console.log(err);
         msg.reply("Couldn't find a post due to an error.", err);
     }
-
-    console.log(image);
 }
 
 function getInput(data) {
