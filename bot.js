@@ -186,6 +186,7 @@ async function getRedditPost(msg, sub) {
                 };
                 msg.reply({ embed: testembed });
                 msg.channel.send('||' + image.data.url + '||');
+                return;
             }
         } else {
             if (externalRedditContent(image)) {
