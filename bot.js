@@ -156,9 +156,17 @@ async function getRedditPost(msg) {
         .setTitle(image.data.title)
         .setURL(image.data.url_overridden_by_dest)
         .setAuthor(image.data.author)
-        .setDescription('')
+        .setDescription('Test')
         .setThumbnail(image.data.thumbnail)
+        .addFields(
+            { name: 'Regular field title', value: 'Some value here' },
+            { name: '\u200B', value: '\u200B' },
+            { name: 'Inline field title', value: 'Some value here', inline: true },
+            { name: 'Inline field title', value: 'Some value here', inline: true },
+        )
+        .addField('Inline field title', 'Some value here', true)
         .setImage(image.data.url_overridden_by_dest)
+        .setTimestamp()
     msg.reply(embed);
     console.log(image);
 }
