@@ -184,12 +184,7 @@ async function getRedditPost(msg, sub) {
                     description: image.data.selftext
 
                 };
-                msg.channel.send({
-                    files: [{
-                        attachment: image.data.url,
-                        name: "SPOILER_FILE"
-                    }]
-                });
+                msg.channel.send('||', image.data.url, '||');
             }
         } else {
             if (externalRedditContent(image)) {
