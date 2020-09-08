@@ -151,20 +151,7 @@ function getMsg(args, start) {
 
 async function getRedditPost(msg) {
     var image = await reddit.getPost('dankmemes');
-    var testembed = await new Discord.MessageEmbed()
-        .setColor('#0099ff')
-        .setTitle(image.data.title)
-        .setURL(image.data.url_overridden_by_dest)
-        .setAuthor(image.data.author)
-        .setDescription('Test')
-        .addFields(
-            { name: 'Meme', value: 'Some value here' },
-            { name: '\u200B', value: '\u200B' },
-            { name: 'Inline field title', value: 'Some value here', inline: true },
-            { name: 'Inline field title', value: 'Some value here', inline: true },
-        )
-        .addField('Inline field title', 'Some value here', true)
-
+    const testembed = { title: 'Some title' };
     msg.reply({ embed: testembed });
     console.log(image);
 }
