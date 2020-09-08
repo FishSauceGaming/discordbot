@@ -126,7 +126,7 @@ disClient.on('message', msg => {
                     msg.reply("\n\t\t\t\tCommand List\n!text {name/number} {message}\n!call {number/name} {message}");
                     break;
                 case 'meme':
-                    msg.reply(asyncCall());
+                    getRedditPost(msg);
                     break;
                 //!xml
                 case 'xml':
@@ -148,25 +148,11 @@ function getMsg(args, start) {
     return textMessage;
 }
 
-function resolveAfter2Seconds() {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve('resolved');
-        }, 2000);
-    });
-}
 
-async function asyncCall() {
-    console.log('calling');
-    const result = await resolveAfter2Seconds();
-    console.log(result);
-    // expected output: "resolved"
-}
-
-async function getRedditPost() {
+async function getRedditPost(msg) {
 
     var image = await reddit.getImage('dankmemes');
-    return image;
+    msg.reply(image);
 
 }
 
