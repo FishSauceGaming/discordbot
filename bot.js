@@ -160,7 +160,7 @@ async function getRedditPost(msg, sub) {
         const testembed = {
             color: 0x0099ff,
             title: image.data.title,
-            url: image.data.permalink,
+            url: image.data.url,
             author: {
                 name: image.data.author
             },
