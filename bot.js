@@ -159,22 +159,27 @@ async function getRedditPost(msg, sub) {
     var nsfw = image.data.over_18;
     try {
         if (nsfw) {
-            var testembed = {
-                color: 0x0099ff,
-                title: image.data.title,
-                url: image.data.url,
-                author: {
-                    name: image.data.author
-                },
-                description: image.data.selftext
+            if (image.data.url.includes('v.redd.it') || image.data.url_overridden_by_dest.includes('v.redd.it') || image.data.url.includes('twitch.tv') || image.data.url.includes('youtube.com') || image.data.url.includes('youtu.be')) {
+                msg.reply(image.data.url);
+                return;
+            } else {
+                var testembed = {
+                    color: 0x0099ff,
+                    title: image.data.title,
+                    url: image.data.url,
+                    author: {
+                        name: image.data.author
+                    },
+                    description: image.data.selftext
 
-            };
-            msg.channel.send({
-                files: [{
-                    attachment: image.data.url,
-                    name: "SPOILER_FILE.jpg"
-                }]
-            });
+                };
+                msg.channel.send({
+                    files: [{
+                        attachment: image.data.url,
+                        name: "SPOILER_FILE.jpg"
+                    }]
+                });
+            }
         } else {
             if (image.data.url.includes('v.redd.it') || image.data.url_overridden_by_dest.includes('v.redd.it') || image.data.url.includes('twitch.tv') || image.data.url.includes('youtube.com') || image.data.url.includes('youtu.be')) {
                 msg.reply(image.data.url);
