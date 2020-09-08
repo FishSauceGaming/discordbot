@@ -155,7 +155,7 @@ function getMsg(args, start) {
 
 
 async function getRedditPost(msg, sub) {
-    var image = await reddit.getPost(sub);
+    var image = await reddit.getPost(sub, 1);
     const testembed = {
         color: 0x0099ff,
         title: image.data.title,
