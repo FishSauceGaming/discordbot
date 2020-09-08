@@ -171,6 +171,7 @@ async function getRedditPost(msg, sub) {
 
         };
         msg.reply({ embed: testembed });
+        msg.reply(image.data.url)
     } catch {
         msg.reply("Couldn't find a post.");
     }
