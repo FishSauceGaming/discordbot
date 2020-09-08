@@ -171,7 +171,7 @@ async function getRedditPost(msg, sub) {
 
                 };
                 msg.reply({ embed: testembed });
-                msg.channel.send('||', image.data.url, '||');
+                msg.channel.send('||' + image.data.url + '||');
                 return;
             } else {
                 var testembed = {
@@ -184,6 +184,7 @@ async function getRedditPost(msg, sub) {
                     description: image.data.selftext
 
                 };
+                msg.reply({ embed: testembed });
                 msg.channel.send('||' + image.data.url + '||');
             }
         } else {
