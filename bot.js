@@ -151,7 +151,7 @@ function getMsg(args, start) {
 
 async function getRedditPost(msg) {
     var image = await reddit.getPost('dankmemes');
-    var embed = new Discord.MessageEmbed()
+    var embed = await new Discord.MessageEmbed()
         .setColor('#0099ff')
         .setTitle(image.data.title)
         .setURL(image.data.url_overridden_by_dest)
