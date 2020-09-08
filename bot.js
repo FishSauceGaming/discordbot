@@ -157,9 +157,6 @@ async function getRedditPost(msg) {
         author: {
             name: image.data.author
         },
-        thumbnail: {
-            url: image.data.thumbnail
-        },
         image: {
             url: image.data.url_overridden_by_dest
         }
