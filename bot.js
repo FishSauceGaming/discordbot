@@ -1,5 +1,7 @@
 var Discord = require('discord.js');
 var logger = require('winston');
+var randomReddit = require('random-reddit');
+var redditAuth = require('/home/colin/Desktop/discordbotjson/reddit.json');
 var auth = require('/home/colin/Desktop/discordbotjson/auth.json');
 var twilio = require('/home/colin/Desktop/discordbotjson/twilio.json');
 var savedNums = require('/home/colin/Desktop/discordbotjson/numbers.json');
@@ -7,6 +9,12 @@ var savedNums = require('/home/colin/Desktop/discordbotjson/numbers.json');
 const twilioAccountSid = twilio.sid;
 const twilioAuthToken = twilio.token;
 const twilioClient = require('twilio')(twilioAccountSid, twilioAuthToken);
+const reddit = new randomReddit({
+    username: redditAuth.username,
+    password: redditAuth.password,
+    app_id: redditAuth.app_id,
+    api_secret: redditAuth.secret
+})
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
@@ -117,6 +125,9 @@ disClient.on('message', msg => {
                 case 'help':
                     msg.reply("\n\t\t\t\tCommand List\n!text {name/number} {message}\n!call {number/name} {message}");
                     break;
+                case 'meme':
+                    msg.reply(getRedditPost);
+                    break;
                 //!xml
                 case 'xml':
                     createMsgXML(msg.author.username, getMsg(args, 1));
@@ -135,6 +146,11 @@ function getMsg(args, start) {
         }
     }
     return textMessage;
+}
+
+function getRedditPost() {
+    const image = await reddit.getImage('dankmemes');
+    return image;
 }
 
 function getInput(data) {
