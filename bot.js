@@ -126,8 +126,7 @@ disClient.on('message', msg => {
                     msg.reply("\n\t\t\t\tCommand List\n!text {name/number} {message}\n!call {number/name} {message}");
                     break;
                 case 'meme':
-                    img = getRedditPost();
-                    msg.reply(img);
+                    msg.reply(test());
                     break;
                 //!xml
                 case 'xml':
@@ -147,6 +146,11 @@ function getMsg(args, start) {
         }
     }
     return textMessage;
+}
+
+async function test() {
+    img = await getRedditPost();
+    return img;
 }
 
 async function getRedditPost() {
