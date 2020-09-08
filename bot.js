@@ -151,7 +151,15 @@ function getMsg(args, start) {
 
 async function getRedditPost(msg) {
     var image = await reddit.getPost('dankmemes');
-    msg.reply(image.data.title + '\n' + image.data.url_overridden_by_dest);
+    var embed = new Discord.MessageEmbed()
+        .setColor('#0099ff')
+        .setTitle(image.data.title)
+        .setURL(image.data.url_overridden_by_dest)
+        .setAuthor(image.data.author)
+        .setDescription('')
+        .setThumbnail(image.data.thumbnail)
+        .setImage(image.data.url_overridden_by_dest)
+    msg.reply(embed);
     console.log(image);
 }
 
