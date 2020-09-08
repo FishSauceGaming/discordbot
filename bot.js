@@ -156,6 +156,7 @@ function getMsg(args, start) {
 
 async function getRedditPost(msg, sub) {
     var image = await reddit.getPost(sub, 1);
+    var nsfw = image.data.over_18;
     try {
         const testembed = {
             color: 0x0099ff,
@@ -168,7 +169,7 @@ async function getRedditPost(msg, sub) {
                 url: image.data.url
             },
             description: image.data.selftext,
-
+            spoiler: nsfw
         };
         msg.reply({ embed: testembed });
     } catch {
