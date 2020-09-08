@@ -257,10 +257,10 @@ function getInput(data) {
         case 'will':
             return savedNums.will;
         default:
-            if (data.length !== 10) {
-                return 0;
-            } else if (data.length === 10 && !isNaN(data)) {
+            if (data.length === 10 && !isNaN(data)) {
                 return data;
+            } else {
+                return 0;
             }
     }
     
