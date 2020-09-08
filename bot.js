@@ -156,8 +156,8 @@ function getMsg(args, start) {
 
 async function getRedditPost(msg, sub) {
     var image = await reddit.getPost(sub, 1);
-    var nsfw = image.data.over_18;
     try {
+        var nsfw = image.data.over_18;
         if (nsfw) {
             if (externalRedditContent(image)) {
                 var testembed = {
