@@ -1,6 +1,6 @@
 var Discord = require('discord.js');
 var logger = require('winston');
-var randomReddit = require('random-reddit');
+const { RandomReddit } = require('random-reddit')
 var redditAuth = require('/home/colin/Desktop/discordbotjson/reddit.json');
 var auth = require('/home/colin/Desktop/discordbotjson/auth.json');
 var twilio = require('/home/colin/Desktop/discordbotjson/twilio.json');
@@ -9,7 +9,7 @@ var savedNums = require('/home/colin/Desktop/discordbotjson/numbers.json');
 const twilioAccountSid = twilio.sid;
 const twilioAuthToken = twilio.token;
 const twilioClient = require('twilio')(twilioAccountSid, twilioAuthToken);
-const reddit = new randomReddit({
+const reddit = new RandomReddit({
     username: redditAuth.username,
     password: redditAuth.password,
     app_id: redditAuth.app_id,
