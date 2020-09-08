@@ -153,9 +153,12 @@ async function getRedditPost(msg) {
     var image = await reddit.getPost('dankmemes');
     const testembed = {
         color: 0x0099ff,
-        title: 'Some title',
+        title: image.data.title,
         author: {
             name: image.data.author
+        },
+        thumbnail: {
+            url: image.data.thumbnail
         }
 
     };
