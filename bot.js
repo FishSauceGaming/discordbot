@@ -126,7 +126,8 @@ disClient.on('message', msg => {
                     msg.reply("\n\t\t\t\tCommand List\n!text {name/number} {message}\n!call {number/name} {message}");
                     break;
                 case 'meme':
-                    msg.reply(await (reddit.getImage('dankmemes')));
+                    img = await getRedditPost();
+                    msg.reply(img);
                     break;
                 //!xml
                 case 'xml':
@@ -146,6 +147,13 @@ function getMsg(args, start) {
         }
     }
     return textMessage;
+}
+
+async function getRedditPost() {
+
+    var image = await reddit.getImage('dankmemes');
+    return image;
+
 }
 
 function getInput(data) {
