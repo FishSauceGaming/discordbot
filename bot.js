@@ -129,8 +129,8 @@ disClient.on('message', msg => {
                     getRedditPost(msg, 'dankmemes');
                     break;
                 case 'reddit':
-                    console.log(getMsg(args[0]));
-                    getRedditPost(msg, getMsg(args[0]));
+                    console.log(args[0]);
+                    getRedditPost(msg, args[0]);
 
                     break;
                 //!xml
