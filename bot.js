@@ -156,18 +156,23 @@ function getMsg(args, start) {
 
 async function getRedditPost(msg, sub) {
     var image = await reddit.getPost(sub, 1);
-    const testembed = {
-        color: 0x0099ff,
-        title: image.data.title,
-        author: {
-            name: image.data.author
-        },
-        image: {
-            url: image.data.url_overridden_by_dest
-        }
+    try {
+        const testembed = {
+            color: 0x0099ff,
+            title: image.data.title,
+            author: {
+                name: image.data.author
+            },
+            image: {
+                url: image.data.url_overridden_by_dest
+            }
 
-    };
-    msg.reply({ embed: testembed });
+        };
+        msg.reply({ embed: testembed });
+    } catch{
+        msg.reply("Couldn't find a post.");
+    }
+
     console.log(image);
 }
 
