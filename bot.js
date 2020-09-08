@@ -176,7 +176,7 @@ async function getRedditPost(msg, sub) {
                 }]
             });
         } else {
-            if (image.data.url.includes('v.redd.it') || image.data.url_overridden_by_dest.includes('v.redd.it')) {
+            if (image.data.url.includes('v.redd.it') || image.data.url_overridden_by_dest.includes('v.redd.it') || image.data.url.includes('twitch.tv') || image.data.url.includes('youtube.com') || image.data.url.includes('youtu.be')) {
                 msg.reply(image.data.url);
                 return;
             } else {
