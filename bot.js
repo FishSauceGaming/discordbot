@@ -158,19 +158,38 @@ async function getRedditPost(msg, sub) {
     var image = await reddit.getPost(sub, 1);
     var nsfw = image.data.over_18;
     try {
-        const testembed = {
-            color: 0x0099ff,
-            title: image.data.title,
-            url: image.data.url,
-            author: {
-                name: image.data.author
-            },
-            image: {
-                url: image.data.url
-            },
-            description: image.data.selftext,
-            spoiler: nsfw
-        };
+        if (nsfw) {
+            var testembed = {
+                color: 0x0099ff,
+                title: image.data.title,
+                url: image.data.url,
+                author: {
+                    name: image.data.author
+                },
+                description: image.data.selftext,
+                spoiler: nsfw
+
+            };
+            channel.send({
+                files: [{
+                    attachment: image.data.url,
+                    name: "SPOILER_FILE.jpg"
+                }]
+            });
+        } else {
+            var testembed = {
+                color: 0x0099ff,
+                title: image.data.title,
+                url: image.data.url,
+                author: {
+                    name: image.data.author
+                },
+                image: {
+                    url: image.data.url
+                },
+                description: image.data.selftext
+            };
+        }
         msg.reply({ embed: testembed });
     } catch {
         msg.reply("Couldn't find a post.");
