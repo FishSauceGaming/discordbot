@@ -159,6 +159,9 @@ async function getRedditPost(msg) {
         },
         thumbnail: {
             url: image.data.thumbnail
+        },
+        image: {
+            url: image.data.url_overridden_by_dest
         }
 
     };
