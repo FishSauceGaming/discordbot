@@ -187,7 +187,7 @@ async function getRedditPost(msg, sub) {
                 msg.channel.send({
                     files: [{
                         attachment: image.data.url,
-                        name: "SPOILER_FILE.jpg"
+                        name: "SPOILER_FILE"
                     }]
                 });
             }
