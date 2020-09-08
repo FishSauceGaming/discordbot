@@ -126,7 +126,10 @@ disClient.on('message', msg => {
                     msg.reply("\n\t\t\t\tCommand List\n!text {name/number} {message}\n!call {number/name} {message}");
                     break;
                 case 'meme':
-                    getRedditPost(msg);
+                    getRedditPost(msg, 'dankmemes');
+                    break;
+                case 'reddit':
+                    getRedditPost(msg, getMsg(args[0]));
                     break;
                 //!xml
                 case 'xml':
@@ -149,8 +152,8 @@ function getMsg(args, start) {
 }
 
 
-async function getRedditPost(msg) {
-    var image = await reddit.getPost('dankmemes');
+async function getRedditPost(msg, sub) {
+    var image = await reddit.getPost(sub);
     const testembed = {
         color: 0x0099ff,
         title: image.data.title,
