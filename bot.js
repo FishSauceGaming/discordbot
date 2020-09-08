@@ -182,7 +182,18 @@ async function getRedditPost(msg, sub) {
             }
         } else {
             if (externalRedditContent(image)) {
-                msg.reply(image.data.url);
+                var testembed = {
+                    color: 0x0099ff,
+                    title: image.data.title,
+                    url: image.data.url,
+                    author: {
+                        name: image.data.author
+                    },
+                    description: image.data.selftext
+
+                };
+                msg.reply(testembed);
+                msg.channel.send(image.data.url);
                 return;
             } else {
                 var testembed = {
