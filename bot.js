@@ -126,7 +126,7 @@ disClient.on('message', msg => {
                     msg.reply("\n\t\t\t\tCommand List\n!text {name/number} {message}\n!call {number/name} {message}");
                     break;
                 case 'meme':
-                    msg.reply(getRedditPost());
+                    msg.reply(await getRedditPost());
                     break;
                 //!xml
                 case 'xml':
