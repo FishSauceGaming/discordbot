@@ -151,7 +151,7 @@ function getMsg(args, start) {
 
 async function getRedditPost(msg) {
     var image = await reddit.getPost('dankmemes');
-    var embed = await new Discord.MessageEmbed()
+    var testembed = await new Discord.MessageEmbed()
         .setColor('#0099ff')
         .setTitle(image.data.title)
         .setURL(image.data.url_overridden_by_dest)
@@ -165,7 +165,7 @@ async function getRedditPost(msg) {
         )
         .addField('Inline field title', 'Some value here', true)
 
-    msg.reply(embed);
+    msg.reply({ embed: testembed });
     console.log(image);
 }
 
