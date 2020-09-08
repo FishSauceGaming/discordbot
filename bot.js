@@ -159,7 +159,7 @@ async function getRedditPost(msg, sub) {
     var nsfw = image.data.over_18;
     try {
         if (nsfw) {
-            if (image.data.url.includes('v.redd.it') || image.data.url_overridden_by_dest.includes('v.redd.it') || image.data.url.includes('twitch.tv') || image.data.url.includes('youtube.com') || image.data.url.includes('youtu.be')) {
+            if (externalRedditContent(image)) {
                 msg.reply(image.data.url);
                 return;
             } else {
@@ -181,7 +181,7 @@ async function getRedditPost(msg, sub) {
                 });
             }
         } else {
-            if (image.data.url.includes('v.redd.it') || image.data.url_overridden_by_dest.includes('v.redd.it') || image.data.url.includes('twitch.tv') || image.data.url.includes('youtube.com') || image.data.url.includes('youtu.be')) {
+            if (externalRedditContent(image)) {
                 msg.reply(image.data.url);
                 return;
             } else {
@@ -254,6 +254,22 @@ function createMsgXML(user, message) {
         if (err) throw err;
         console.log('Saved!');
     });
+}
+
+function externalRedditContent(image) {
+    try {
+        if (image.data.url.includes('v.redd.it') || image.data.url_overridden_by_dest.includes('v.redd.it') || image.data.url.includes('twitch.tv') || image.data.url.includes('youtube.com') || image.data.url.includes('youtu.be') || image.data.url_overridden_by_dest.includes('twitch.tv') || image.data.url_overridden_by_dest.includes('youtube.com') || image.data.url_overridden_by_dest.includes('youtu.be')){
+            return true;
+        } else {
+            return false;
+        }
+    } catch {
+        if (image.data.url.includes('v.redd.it') || image.data.url.includes('twitch.tv') || image.data.url.includes('youtube.com') || image.data.url.includes('youtu.be')){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
 
