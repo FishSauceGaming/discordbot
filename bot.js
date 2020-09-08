@@ -185,12 +185,7 @@ async function getRedditPost(msg, sub) {
 
                 };
                 msg.reply({ embed: testembed });
-                msg.channel.send({
-                    files: [{
-                        attachment: image.data.url,
-                        name: "SPOILER_FILE.gif"
-                    }]
-                });
+                msg.channel.send('||' + image.data.url + '||');
                 return;
             }
         } else {
