@@ -200,8 +200,9 @@ async function getRedditPost(msg, sub) {
             }
         }
         msg.reply({ embed: testembed });
-    } catch(err) {
-        msg.reply("Couldn't find a post.", err);
+    } catch (err) {
+        console.log(err);
+        msg.reply("Couldn't find a post due to an error.", err);
     }
 
     console.log(image);
