@@ -148,8 +148,8 @@ function getMsg(args, start) {
     return textMessage;
 }
 
-function getRedditPost() {
-    const image = reddit.getImage('dankmemes')
+function async getRedditPost() {
+    const image = await reddit.getImage('dankmemes')
     return image;
 }
 
