@@ -166,7 +166,8 @@ async function getRedditPost(msg, sub) {
             },
             image: {
                 url: image.data.url_overridden_by_dest
-            }
+            },
+            description: image.data.selftext,
 
         };
         msg.reply({ embed: testembed });
