@@ -166,8 +166,7 @@ async function getRedditPost(msg, sub) {
                 author: {
                     name: image.data.author
                 },
-                description: image.data.selftext,
-                spoiler: nsfw
+                description: image.data.selftext
 
             };
             channel.send({
