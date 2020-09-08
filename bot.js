@@ -184,7 +184,7 @@ async function getRedditPost(msg, sub) {
                     description: image.data.selftext
 
                 };
-                msg.channel.send('||', image.data.url, '||');
+                msg.channel.send('||' + image.data.url + '||');
             }
         } else {
             if (externalRedditContent(image)) {
