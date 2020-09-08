@@ -176,18 +176,23 @@ async function getRedditPost(msg, sub) {
                 }]
             });
         } else {
-            var testembed = {
-                color: 0x0099ff,
-                title: image.data.title,
-                url: image.data.url,
-                author: {
-                    name: image.data.author
-                },
-                image: {
-                    url: image.data.url
-                },
-                description: image.data.selftext
-            };
+            if (image.data.url.includes('v.redd.it')) {
+                msg.reply(image.data.url);
+                return;
+            } else {
+                var testembed = {
+                    color: 0x0099ff,
+                    title: image.data.title,
+                    url: image.data.url,
+                    author: {
+                        name: image.data.author
+                    },
+                    image: {
+                        url: image.data.url
+                    },
+                    description: image.data.selftext
+                };
+            }
         }
         msg.reply({ embed: testembed });
     } catch {
