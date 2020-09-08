@@ -151,7 +151,7 @@ function getMsg(args, start) {
 
 async function getRedditPost(msg) {
     var image = await reddit.getPost('dankmemes');
-    msg.reply(image);
+    console.log(image);
 }
 
 function getInput(data) {
