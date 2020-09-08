@@ -149,9 +149,12 @@ function getMsg(args, start) {
 }
 
 async function getRedditPost() {
-    const image = await reddit.getImage('dankmemes');
-    console.log(image.catch());
-    return image;
+    try {
+        const image = await reddit.getImage('dankmemes');
+        return image;
+    } catch (err) {
+        return err;
+    }
 }
 
 function getInput(data) {
