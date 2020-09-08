@@ -176,8 +176,8 @@ async function getRedditPost(msg, sub) {
                 }]
             });
         } else {
-            if (image.data.url.includes('v.redd.it')) {
-                msg.reply(image.data.url);
+            if (image.data.url.includes('v.redd.it') || ) {
+                msg.reply(image.data.url_overridden_by_dest);
                 return;
             } else {
                 var testembed = {
