@@ -170,7 +170,7 @@ async function getRedditPost(msg, sub) {
                     description: image.data.selftext
 
                 };
-                msg.reply(testembed);
+                msg.reply({ embed: testembed });
                 msg.channel.send(image.data.url);
                 return;
             } else {
@@ -203,7 +203,7 @@ async function getRedditPost(msg, sub) {
                     description: image.data.selftext
 
                 };
-                msg.reply(testembed);
+                msg.reply({ embed: testembed });
                 msg.channel.send(image.data.url);
                 return;
             } else {
