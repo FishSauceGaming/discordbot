@@ -160,6 +160,7 @@ async function getRedditPost(msg, sub) {
         const testembed = {
             color: 0x0099ff,
             title: image.data.title,
+            url: image.data.url,
             author: {
                 name: image.data.author
             },
@@ -169,7 +170,7 @@ async function getRedditPost(msg, sub) {
 
         };
         msg.reply({ embed: testembed });
-    } catch{
+    } catch {
         msg.reply("Couldn't find a post.");
     }
 
