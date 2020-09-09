@@ -95,6 +95,7 @@ disClient.on('message', msg => {
                         msg.reply('Failed to send message.');
                     }
                     break;
+                //!linkcall
                 case 'linkcall':
                     var num = getInput(args[0]);
                     var msg1 = (num) ? 'Success.' : 'Failed to send message.';
@@ -123,11 +124,13 @@ disClient.on('message', msg => {
                     break;
                 //!help
                 case 'help':
-                    msg.reply("\n\t\t\t\tCommand List\n!text {name/number} {message}\n!call {number/name} {message}");
+                    msg.reply("\n\t\t\t\tCommand List\n!text {name/number} {message}\n!call {number/name} {message}\n!meme\n!reddit {subreddit}");
                     break;
+                //!meme
                 case 'meme':
                     getRedditPost(msg, 'dankmemes');
                     break;
+                //!reddit
                 case 'reddit':
                     console.log(args[0]);
                     getRedditPost(msg, args[0]);
