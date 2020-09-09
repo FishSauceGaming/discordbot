@@ -186,6 +186,12 @@ async function getRedditPost(msg, sub) {
                 };
                 msg.reply({ embed: testembed });
                 msg.channel.send('||' + image.data.url + '||');
+                msg.channel.send({
+                    files: [{
+                        attachment: image.data.url,
+                        name: "SPOILER_FILE.jpg"
+                    }]
+                });
                 return;
             }
         } else {
