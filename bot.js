@@ -5,7 +5,7 @@ var redditAuth = require('/home/colin/Desktop/discordbotjson/reddit.json');
 var auth = require('/home/colin/Desktop/discordbotjson/auth.json');
 var twilio = require('/home/colin/Desktop/discordbotjson/twilio.json');
 var savedNums = require('/home/colin/Desktop/discordbotjson/numbers.json');
-var discIds = require('/home/colin/Desktop/discordbotjson/DiscIds.json');
+var discIds = require('/home/colin/Desktop/discordbotjson/discIds.json');
 
 const twilioAccountSid = twilio.sid;
 const twilioAuthToken = twilio.token;
