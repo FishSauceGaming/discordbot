@@ -43,7 +43,7 @@ disClient.on('message', msg => {
                     msg.channel.send("Pinging...").then(m => {
                         var ping = m.createdTimestamp - msg.createdTimestamp;
 
-                        m.edit(`**:ping_pong: Pong! Your Ping Is:-**\n  ${ping}ms`);
+                        msg.channel.send(`**:ping_pong: Pong! Your Ping Is:-**\n  ${ping}ms`);
                     });
                     break;
                 // !text
