@@ -1,10 +1,11 @@
 var Discord = require('discord.js');
 var logger = require('winston');
-const { RandomReddit } = require('random-reddit')
+const { RandomReddit } = require('random-reddit');
 var redditAuth = require('/home/colin/Desktop/discordbotjson/reddit.json');
 var auth = require('/home/colin/Desktop/discordbotjson/auth.json');
 var twilio = require('/home/colin/Desktop/discordbotjson/twilio.json');
 var savedNums = require('/home/colin/Desktop/discordbotjson/numbers.json');
+var discIds = require('/home/colin/Desktop/discordbotjson/DiscIds.json');
 
 const twilioAccountSid = twilio.sid;
 const twilioAuthToken = twilio.token;
@@ -14,7 +15,7 @@ const reddit = new RandomReddit({
     password: redditAuth.password,
     app_id: redditAuth.app_id,
     api_secret: redditAuth.secret
-})
+});
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
@@ -93,6 +94,36 @@ disClient.on('message', msg => {
                         }
                     } else {
                         msg.reply('Failed to send message.');
+                    }
+                    break;
+                //!mastercall (only works for certain people)
+                case 'mastercall':
+                    if (msg.author.id == discIds.colin) {
+                        var num = getInput(args[0]);
+                        var msg1 = (num) ? 'Success.' : 'Failed to send message.';
+
+
+                        createMasterMsgXML(msg.author.username, getMsg(args, 1));
+                        console.log('fishsaucey.com/callmessages/' + msg.author.username + 'call.xml');
+                        if (
+                            twilioClient.calls
+                                .create({
+                                    url: ('http://fishsaucey.com/callmessages/' + msg.author.username + 'call.xml'),
+                                    to: '+1' + num,
+                                    from: '+12019077471'
+                                })
+                                .then(call => console.log(call.sid))) {
+                            if (msg1) {
+                                try {
+                                    msg.reply(msg1 + ' Message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ');
+                                } catch {
+                                    msg.reply(msg1 + ' Message sent by ' + msg.author.username);
+                                }
+
+                            }
+                        } else {
+                            msg.reply('Failed to send message.');
+                        }
                     }
                     break;
                 //!linkcall
@@ -283,6 +314,14 @@ function createLinkXML(user, link) {
 function createMsgXML(user, message) {
     var fs = require('fs');
     fs.writeFile('/var/www/html/callmessages/' + user + 'call.xml', '<Response>\n\t<Say loop="2" voice="alice">' + 'This is a call from '+ user + ' using BotSauce. ' + message + '. The message has been concluded.'+'</Say>\n</Response>', function (err) {
+        if (err) throw err;
+        console.log('Saved!');
+    });
+}
+
+function createMasterMsgXML(user, message) {
+    var fs = require('fs');
+    fs.writeFile('/var/www/html/callmessages/' + user + 'call.xml', '<Response>\n\t<Say loop="2" voice="alice">' + message  + '</Say>\n</Response>', function (err) {
         if (err) throw err;
         console.log('Saved!');
     });
