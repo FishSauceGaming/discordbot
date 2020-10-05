@@ -257,7 +257,7 @@ async function getRedditPost(msg, sub) {
             } else {
                 var testembed = {
                     color: 0x0099ff,
-                    title: image.data.title + ':thumbsup:',
+                    title: image.data.title,
                     url: image.data.url,
                     author: {
                         name: image.data.author
@@ -266,7 +266,7 @@ async function getRedditPost(msg, sub) {
                         url: image.data.url
                     },
                     footer: {
-                        text: "👍 :thumbsup: " + image.data.score + "\t💬   " + image.data.num_comments + image.data.selftext,
+                        text: "<:upvote:719638626757247106>  " + image.data.score + "\t💬   " + image.data.num_comments + image.data.selftext,
                     },
                 };
             }
