@@ -203,9 +203,8 @@ async function getRedditPost(msg, sub) {
                         name: image.data.author
                     },
                     footer: {
-                        text2: image.data.score + " \:arrow_up: " + image.data.num_comments + " \:speech_balloon:\n" + image.data.selftext
+                        text: image.data.score + " Upvotes " + image.data.num_comments + " Comments\n" + image.data.selftext,
                     },
-
                 };
                 msg.reply({ embed: testembed });
                 msg.channel.send('||' + image.data.url + '||');
@@ -225,9 +224,8 @@ async function getRedditPost(msg, sub) {
                         name: image.data.author
                     },
                     footer: {
-                        text2: image.data.score + " \:arrow_up: " + image.data.num_comments + " \:speech_balloon:\n" + image.data.selftext
+                        text: image.data.score + " Upvotes " + image.data.num_comments + " Comments\n" + image.data.selftext,
                     },
-
                 };
                 msg.reply({ embed: testembed });
                 msg.channel.send('||' + image.data.url + '||');
@@ -249,7 +247,7 @@ async function getRedditPost(msg, sub) {
                         name: image.data.author
                     },
                     footer: {
-                        text2: image.data.score + " \:arrow_up: " + image.data.num_comments + " \:speech_balloon:\n" + image.data.selftext
+                        text: image.data.score + " Upvotes " + image.data.num_comments + " Comments\n" + image.data.selftext,
                     },
 
                 };
@@ -267,9 +265,8 @@ async function getRedditPost(msg, sub) {
                     image: {
                         url: image.data.url
                     },
-                    description: image.data.selftext,
                     footer: {
-                        text2: image.data.score + " \:arrow_up: " + image.data.num_comments + " \:speech_balloon:\n" + image.data.selftext
+                        text: image.data.score + " Upvotes " + image.data.num_comments + " Comments\n" + image.data.selftext,
                     },
                 };
             }
