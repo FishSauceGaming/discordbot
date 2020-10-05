@@ -204,7 +204,10 @@ async function getRedditPost(msg, sub) {
                     },
                     description: image.data.selftext,
                     footer: {
-                        text: image.data.score + " :arrow_up: " + image.data.num_comments + " :speech_balloon:\n",
+                        text: image.data.score,
+                        icon_url: 'https://www.clipartmax.com/png/middle/12-125970_arrow-up-clip-art-at-clker-com-vector-online-royalty-arrow-up.png',
+                        text: image.data.num_comments,
+                        icon_url: 'https://www.pinclipart.com/picdir/middle/283-2839443_comment-outline-silence-comments-clipart.png',
                     },
                 };
                 msg.reply({ embed: testembed });
@@ -226,7 +229,10 @@ async function getRedditPost(msg, sub) {
                     },
                     description: image.data.selftext,
                     footer: {
-                        text: image.data.score + " :arrow_up: " + image.data.num_comments + " :speech_balloon:\n",
+                        text: image.data.score,
+                        icon_url: 'https://www.clipartmax.com/png/middle/12-125970_arrow-up-clip-art-at-clker-com-vector-online-royalty-arrow-up.png',
+                        text: image.data.num_comments,
+                        icon_url: 'https://www.pinclipart.com/picdir/middle/283-2839443_comment-outline-silence-comments-clipart.png',
                     },
                 };
                 msg.reply({ embed: testembed });
@@ -250,7 +256,10 @@ async function getRedditPost(msg, sub) {
                     },
                     description: image.data.selftext,
                     footer: {
-                        text: image.data.score + " :arrow_up: " + image.data.num_comments + " :speech_balloon:\n",
+                        text: image.data.score,
+                        icon_url: 'https://www.clipartmax.com/png/middle/12-125970_arrow-up-clip-art-at-clker-com-vector-online-royalty-arrow-up.png',
+                        text: image.data.num_comments,
+                        icon_url: 'https://www.pinclipart.com/picdir/middle/283-2839443_comment-outline-silence-comments-clipart.png',
                     },
                 };
                 msg.reply({ embed: testembed });
@@ -269,7 +278,10 @@ async function getRedditPost(msg, sub) {
                     },
                     description: image.data.selftext,
                     footer: {
-                        text: image.data.score + " :arrow_up: " + image.data.num_comments + " :speech_balloon:\n",
+                        text: image.data.score,
+                        icon_url: 'https://www.clipartmax.com/png/middle/12-125970_arrow-up-clip-art-at-clker-com-vector-online-royalty-arrow-up.png',
+                        text: image.data.num_comments, 
+                        icon_url: 'https://www.pinclipart.com/picdir/middle/283-2839443_comment-outline-silence-comments-clipart.png',
                     },
                 };
             }
