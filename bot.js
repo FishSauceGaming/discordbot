@@ -336,13 +336,13 @@ function createMasterMsgXML(user, message) {
 
 function externalRedditContent(image) {
     try {
-        if (image.data.url.includes('v.redd.it') || image.data.url_overridden_by_dest.includes('v.redd.it') || image.data.url.includes('twitch.tv') || image.data.url.includes('youtube.com') || image.data.url.includes('youtu.be') || image.data.url_overridden_by_dest.includes('twitch.tv') || image.data.url_overridden_by_dest.includes('youtube.com') || image.data.url_overridden_by_dest.includes('youtu.be') || image.data.url_overridden_by_dest.includes('i.imgur.com') || image.data.url.includes('i.imgur.com')){
+        if (image.data.url.includes('v.redd.it') || image.data.url_overridden_by_dest.includes('v.redd.it') || image.data.url.includes('twitch.tv') || image.data.url.includes('youtube.com') || image.data.url.includes('youtu.be') || image.data.url_overridden_by_dest.includes('twitch.tv') || image.data.url_overridden_by_dest.includes('youtube.com') || image.data.url_overridden_by_dest.includes('youtu.be') || image.data.url_overridden_by_dest.includes('i.imgur.com') || image.data.url.includes('i.imgur.com') || image.data.url.includes('gfycat.com') || image.data.url_overridden_by_dest.includes('gfycat.com')){
             return true;
         } else {
             return false;
         }
     } catch {
-        if (image.data.url.includes('v.redd.it') || image.data.url.includes('twitch.tv') || image.data.url.includes('youtube.com') || image.data.url.includes('youtu.be')){
+        if (image.data.url.includes('v.redd.it') || image.data.url.includes('twitch.tv') || image.data.url.includes('youtube.com') || image.data.url.includes('youtu.be') || || image.data.url.includes('gfycat.com')){
             return true;
         } else {
             return false;
