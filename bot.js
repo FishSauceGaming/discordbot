@@ -202,8 +202,10 @@ async function getRedditPost(msg, sub) {
                     author: {
                         name: image.data.author
                     },
-                    description: image.data.score + " Upvotes " + image.data.num_comments + " Comments\n" + image.data.selftext
-
+                    description: image.data.selftext,
+                    footer: {
+                        text: image.data.score + " Upvotes " + image.data.num_comments + " Comments\n",
+                    },
                 };
                 msg.reply({ embed: testembed });
                 msg.channel.send('||' + image.data.url + '||');
@@ -222,8 +224,10 @@ async function getRedditPost(msg, sub) {
                     author: {
                         name: image.data.author
                     },
-                    description: image.data.score + " Upvotes " + image.data.num_comments + " Comments\n" + image.data.selftext
-
+                    description: image.data.selftext,
+                    footer: {
+                        text: image.data.score + " Upvotes " + image.data.num_comments + " Comments\n",
+                    },
                 };
                 msg.reply({ embed: testembed });
                 msg.channel.send('||' + image.data.url + '||');
@@ -244,8 +248,10 @@ async function getRedditPost(msg, sub) {
                     author: {
                         name: image.data.author
                     },
-                    footer: image.data.score + " Upvotes " + image.data.num_comments + " Comments\n" + image.data.selftext
-
+                    description: image.data.selftext,
+                    footer: {
+                        text: image.data.score + " Upvotes " + image.data.num_comments + " Comments\n",
+                    },
                 };
                 msg.reply({ embed: testembed });
                 msg.channel.send(image.data.url);
@@ -261,7 +267,10 @@ async function getRedditPost(msg, sub) {
                     image: {
                         url: image.data.url
                     },
-                    footer: image.data.score + " Upvotes " + image.data.num_comments + " Comments\n" + image.data.selftext
+                    description: image.data.selftext,
+                    footer: {
+                        text: image.data.score + " Upvotes " + image.data.num_comments + " Comments\n",
+                    },
                 };
             }
         }
