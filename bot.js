@@ -189,8 +189,8 @@ function getMsg(args, start) {
 
 
 async function getRedditPost(msg, sub) {
-    console.log(image);
     var image = await reddit.getPost(sub, 1);
+    console.log(image);
     try {
         var nsfw = image.data.over_18;
         if (nsfw) {
