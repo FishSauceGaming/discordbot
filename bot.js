@@ -202,7 +202,7 @@ async function getRedditPost(msg, sub) {
                     author: {
                         name: image.data.author
                     },
-                    description: image.data.score + " Upvotes " + image.data.num_comments + " Comments\n" + image.data.selftext
+                    description: image.data.score + " :arrow_up: " + image.data.num_comments + " :speech_balloon:\n" + image.data.selftext
 
                 };
                 msg.reply({ embed: testembed });
@@ -222,7 +222,7 @@ async function getRedditPost(msg, sub) {
                     author: {
                         name: image.data.author
                     },
-                    description: image.data.score + " Upvotes " + image.data.num_comments + " Comments\n" + image.data.selftext
+                    description: image.data.score + " :arrow_up: " + image.data.num_comments + " :speech_balloon:\n" + image.data.selftext
 
                 };
                 msg.reply({ embed: testembed });
@@ -244,7 +244,7 @@ async function getRedditPost(msg, sub) {
                     author: {
                         name: image.data.author
                     },
-                    description: image.data.score + " <:arrow_up:> " + image.data.num_comments + " <:speech_balloon:>\n" + image.data.selftext
+                    description: image.data.score + " :arrow_up: " + image.data.num_comments + " :speech_balloon:\n" + image.data.selftext
 
                 };
                 msg.reply({ embed: testembed });
@@ -263,7 +263,7 @@ async function getRedditPost(msg, sub) {
                     },
                     description: image.data.selftext,
                     footer: {
-                        text: image.data.score + " Upvotes " + image.data.num_comments + " Comments\n",
+                        description: image.data.score + " :arrow_up: " + image.data.num_comments + " :speech_balloon:\n" + image.data.selftext
                     },
                 };
             }
