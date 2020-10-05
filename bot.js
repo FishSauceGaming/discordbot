@@ -266,7 +266,7 @@ async function getRedditPost(msg, sub) {
                         url: image.data.url
                     },
                     footer: {
-                        text: "👍  " + image.data.score + "\t💬  " + image.data.num_comments  + image.data.selftext,
+                        text: "<:upvote:719638626757247106>  " + image.data.score + "\t💬  " + image.data.num_comments + image.data.selftext,
                     },
                 };
             }
