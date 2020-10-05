@@ -342,7 +342,7 @@ function externalRedditContent(image) {
             return false;
         }
     } catch {
-        if (image.data.url.includes('v.redd.it') || image.data.url.includes('twitch.tv') || image.data.url.includes('youtube.com') || image.data.url.includes('youtu.be') || || image.data.url.includes('gfycat.com')){
+        if (image.data.url.includes('v.redd.it') || image.data.url.includes('twitch.tv') || image.data.url.includes('youtube.com') || image.data.url.includes('youtu.be') || image.data.url.includes('gfycat.com')){
             return true;
         } else {
             return false;
