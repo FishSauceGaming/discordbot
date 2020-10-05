@@ -1,4 +1,4 @@
-var Discord = require('discord.js');
+﻿var Discord = require('discord.js');
 var logger = require('winston');
 const { RandomReddit } = require('random-reddit');
 var redditAuth = require('/home/colin/Desktop/discordbotjson/reddit.json');
@@ -203,7 +203,7 @@ async function getRedditPost(msg, sub) {
                         name: image.data.author
                     },
                     footer: {
-                        text: image.data.score + " Upvotes " + image.data.num_comments + " Comments\n" + image.data.selftext,
+                        text: image.data.score + " 👍 " + image.data.num_comments + " 💬\n" + image.data.selftext,
                     },
                 };
                 msg.reply({ embed: testembed });
@@ -224,7 +224,7 @@ async function getRedditPost(msg, sub) {
                         name: image.data.author
                     },
                     footer: {
-                        text: image.data.score + " Upvotes " + image.data.num_comments + " Comments\n" + image.data.selftext,
+                        text: image.data.score + " 👍 " + image.data.num_comments + " 💬\n" + image.data.selftext,
                     },
                 };
                 msg.reply({ embed: testembed });
@@ -247,7 +247,7 @@ async function getRedditPost(msg, sub) {
                         name: image.data.author
                     },
                     footer: {
-                        text: image.data.score + " Upvotes " + image.data.num_comments + " Comments\n" + image.data.selftext,
+                        text: image.data.score + " 👍 " + image.data.num_comments + " 💬\n" + image.data.selftext,
                     },
 
                 };
@@ -266,7 +266,7 @@ async function getRedditPost(msg, sub) {
                         url: image.data.url
                     },
                     footer: {
-                        text: image.data.score + " Upvotes " + image.data.num_comments + " Comments\n" + image.data.selftext,
+                        text: image.data.score + " 👍 " + image.data.num_comments + " 💬\n" + image.data.selftext,
                     },
                 };
             }
