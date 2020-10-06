@@ -203,7 +203,7 @@ async function getRedditPost(msg, sub) {
                         name: image.data.author
                     },
                     footer: {
-                        text: "👍  " + image.data.score + "\t💬\n" + image.data.num_comments  + image.data.selftext,
+                        text: "👍  " + image.data.score + "\t💬 " + image.data.num_comments  + image.data.selftext,
                     },
                 };
                 msg.reply({ embed: testembed });
@@ -224,7 +224,7 @@ async function getRedditPost(msg, sub) {
                         name: image.data.author
                     },
                     footer: {
-                        text: "👍  " + image.data.score + "\t💬\n" + image.data.num_comments + image.data.selftext,
+                        text: "👍  " + image.data.score + "\t💬 " + image.data.num_comments + image.data.selftext,
                     },
                 };
                 msg.reply({ embed: testembed });
@@ -247,7 +247,7 @@ async function getRedditPost(msg, sub) {
                         name: image.data.author
                     },
                     footer: {
-                        text: "👍  " + image.data.score + "\t💬\n" + image.data.num_comments + image.data.selftext,
+                        text: "👍  " + image.data.score + "\t💬 " + image.data.num_comments + image.data.selftext,
                     },
 
                 };
@@ -266,7 +266,7 @@ async function getRedditPost(msg, sub) {
                         url: image.data.url
                     },
                     footer: {
-                        text: "👍  " + image.data.score + "\t💬\n" + image.data.num_comments + image.data.selftext,
+                        text: "👍  " + image.data.score + "\t💬 " + image.data.num_comments + image.data.selftext,
                     },
                 };
             }
