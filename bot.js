@@ -161,6 +161,9 @@ disClient.on('message', msg => {
                 case 'meme':
                     getRedditPost(msg, 'dankmemes');
                     break;
+                case 'thomas':
+                    getRedditPost(msg, 'wholesomeyuri');
+                    break;
                 //!reddit
                 case 'reddit':
                     console.log(args[0]);
