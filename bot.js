@@ -211,7 +211,8 @@ async function getRedditPost(msg, sub) {
                         text: "👍  " + image.data.score + "\t💬 " + image.data.num_comments  + image.data.selftext,
                     },
                 };
-                msg.reply('Subreddit: r/' + sub + { embed: testembed });
+                msg.channel.send('Subreddit: r/' + sub);
+                msg.reply({ embed: testembed });
                 msg.channel.send('||' + image.data.url + '||');
                 msg.channel.send({
                     files: [{
@@ -232,7 +233,8 @@ async function getRedditPost(msg, sub) {
                         text: "👍  " + image.data.score + "\t💬 " + image.data.num_comments + image.data.selftext,
                     },
                 };
-                msg.reply('Subreddit: r/' + sub + { embed: testembed });
+                msg.channel.send('Subreddit: r/' + sub);
+                msg.reply({ embed: testembed });
                 msg.channel.send('||' + image.data.url + '||');
                 msg.channel.send({
                     files: [{
@@ -256,7 +258,8 @@ async function getRedditPost(msg, sub) {
                     },
 
                 };
-                msg.reply('Subreddit: r/' + sub + { embed: testembed });
+                msg.channel.send('Subreddit: r/' + sub);
+                msg.reply({ embed: testembed });
                 msg.channel.send(image.data.url);
                 return;
             } else {
@@ -276,7 +279,8 @@ async function getRedditPost(msg, sub) {
                 };
             }
         }
-        msg.reply('Subreddit: r/' + sub + { embed: testembed });
+        msg.channel.send('Subreddit: r/' + sub);
+        msg.reply({ embed: testembed });
     } catch (err) {
         console.log(err);
         msg.reply("Couldn't find a post due to an error.", err);
