@@ -208,7 +208,7 @@ async function getRedditPost(msg, sub) {
                         name: image.data.author
                     },
                     footer: {
-                        text: "👍  " + image.data.score + "\t💬 " + image.data.num_comments  + image.data.selftext,
+                        text: "👍  " + image.data.score + "\t💬 " + image.data.num_comments + ' ' + image.data.selftext,
                     },
                 };
                 msg.channel.send('Subreddit: r/' + sub);
@@ -230,7 +230,7 @@ async function getRedditPost(msg, sub) {
                         name: image.data.author
                     },
                     footer: {
-                        text: "👍  " + image.data.score + "\t💬 " + image.data.num_comments + image.data.selftext,
+                        text: "👍  " + image.data.score + "\t💬 " + image.data.num_comments + ' ' + image.data.selftext,
                     },
                 };
                 msg.channel.send('Subreddit: r/' + sub);
@@ -254,7 +254,7 @@ async function getRedditPost(msg, sub) {
                         name: image.data.author
                     },
                     footer: {
-                        text: "👍  " + image.data.score + "\t💬 " + image.data.num_comments + image.data.selftext,
+                        text: "👍  " + image.data.score + "\t💬 " + image.data.num_comments + ' ' + image.data.selftext,
                     },
 
                 };
@@ -274,7 +274,7 @@ async function getRedditPost(msg, sub) {
                         url: image.data.url
                     },
                     footer: {
-                        text: "👍  " + image.data.score + "\t💬 " + image.data.num_comments + image.data.selftext,
+                        text: "👍  " + image.data.score + "\t💬 " + image.data.num_comments + ' ' + image.data.selftext,
                     },
                 };
             }
