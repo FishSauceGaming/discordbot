@@ -7,6 +7,7 @@ var twilio = require('/home/colin/Desktop/discordbotjson/twilio.json');
 var savedNums = require('/home/colin/Desktop/discordbotjson/numbers.json');
 var discIds = require('/home/colin/Desktop/discordbotjson/discIds.json');
 
+const thomas = ['churchofmaisakurajima', 'mikokuro', 'wholesomeyuri', 'goodanimemes']
 const twilioAccountSid = twilio.sid;
 const twilioAuthToken = twilio.token;
 const twilioClient = require('twilio')(twilioAccountSid, twilioAuthToken);
@@ -162,7 +163,8 @@ disClient.on('message', msg => {
                     getRedditPost(msg, 'dankmemes');
                     break;
                 case 'thomas':
-                    getRedditPost(msg, 'wholesomeyuri');
+                    var random = Math.floor(Math.random() * thomas.length);
+                    getRedditPost(msg, thomas[random]);
                     break;
                 //!reddit
                 case 'reddit':
