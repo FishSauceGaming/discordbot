@@ -8,7 +8,6 @@ var savedNums = require('/home/colin/Desktop/discordbotjson/numbers.json');
 var discIds = require('/home/colin/Desktop/discordbotjson/discIds.json');
 var fs = require('fs');
 
-var numsToEmoji = {'1' : ":one:",'2' : ":two:", '3' : ":three:", '4' : ":four:", '5' : ":five:", '6' : ":six:", '7' : ":seven:", '8' : ":eight:", '9' : ":nine:", '0' : ":zero:"}
 
 const thomas = ['churchofmaisakurajima', 'mikokuro', 'wholesomeyuri', 'goodanimemes']
 const twilioAccountSid = twilio.sid;
@@ -183,7 +182,7 @@ disClient.on('message', msg => {
                     contact(msg.author.username + msg.author.id, args[0], args[1], msg)
                     break;
                 case 'readcontacts':
-                    readContactList(msg.author.username, msg.author.id, msg, numsToEmoji);
+                    readContactList(msg.author.username, msg.author.id, msg);
             }
             //Logging command
             log(msg.author.username + msg.author.id, msg.content);
@@ -202,7 +201,8 @@ function getMsg(args, start) {
     return textMessage;
 }
 
-function readContactList(user, id, msg, ntm) {
+function readContactList(user, id, msg) {
+    var ntm = { '1': ":one:", '2': ":two:", '3': ":three:", '4': ":four:", '5': ":five:", '6': ":six:", '7': ":seven:", '8': ":eight:", '9': ":nine:", '0': ":zero:" };
     var obj = user +  id + 'contacts';
     var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
     var parsed = JSON.parse(contactList);
