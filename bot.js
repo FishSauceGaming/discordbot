@@ -211,6 +211,7 @@ function contact(user, name, number, msg) {
 
     } catch (err) {
         var newObj = { name: number };
+        console.log(newObj);
         var parsed = JSON.stringify(newObj);
         fs.writeFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json', parsed);
         msg.reply("Contact saved.");
