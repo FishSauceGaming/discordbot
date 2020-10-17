@@ -210,7 +210,7 @@ function readContactList(user, id, msg) {
     var body = '';
     var i = 1;
     for (property in parsed) {
-        stri = toString(i);
+        stri = i.toString();
         console.log(stri)
         body = body.concat(ntm[stri] + ": " + parsed[property] + '\n');
         i++;
