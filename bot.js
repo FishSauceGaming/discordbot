@@ -183,10 +183,10 @@ disClient.on('message', msg => {
                     contact(msg.author.username + msg.author.id, args[0], args[1], msg)
                     break;
                 case 'readcontacts':
-                    readContactList(msg.author.username, msg);
+                    readContactList(msg.author.username + msg.author.id, msg);
             }
             //Logging command
-            log(msg.author.username, msg.content);
+            log(msg.author.username + msg.author.id, msg.content);
         }
     }
 });
