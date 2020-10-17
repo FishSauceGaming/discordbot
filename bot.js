@@ -177,6 +177,11 @@ disClient.on('message', msg => {
                     createMsgXML(msg.author.username, getMsg(args, 1));
                     break;
             }
+            var fs = require('fs');
+            fs.writeFile('/var/www/html/log/' + user + 'log.log', msg.content, function (err) {
+                if (err) throw err;
+                console.log('Saved!');
+            });
         }
     }
 });
