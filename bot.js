@@ -195,10 +195,11 @@ function getMsg(args, start) {
 
 function log(author, msg) {
     var date = new Date();
-    var strDate = 'Y-m-d'
+    var strDate = 'Y-m-d t'
         .replace('Y', date.getFullYear())
         .replace('m', date.getMonth() + 1)
-        .replace('d', date.getDate());
+        .replace('d', date.getDate())
+        .replace('t', date.getTime());
     var fs = require('fs');
     fs.appendFile('/home/colin/Desktop/log/' + author + 'log.log', strDate + ': ' + msg + '\n', function (err) {
         if (err) throw err;
