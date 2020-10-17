@@ -201,14 +201,15 @@ function getMsg(args, start) {
 function contact(user, name, number, msg) {
     var obj = user + 'contacts';
     try {
-        var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
-        var parsed = JSON.parse(contactList);
-        parsed[name] = number;
+        if (fs.existsSync('/home/colin/Desktop/discordbotjson/' + obj + '.json')) {
+            var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
+            var parsed = JSON.parse(contactList);
+            parsed[name] = number;
 
-        parsed = JSON.stringify(parsed);
-        fs.writeFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json', parsed);
-        msg.reply("Contact saved.");
-
+            parsed = JSON.stringify(parsed);
+            fs.writeFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json', parsed);
+            msg.reply("Contact saved.");
+        }
     } catch (err) {
         var newObj = { name: number };
         console.log(newObj);
