@@ -51,7 +51,7 @@ disClient.on('message', msg => {
                     break;
                 // !text
                 case 'text':
-                    var num = getInput(args[0]);
+                    var num = getInput(args[0],msg.author.username, msg.author.id);
                     var msg1 = (num) ? 'Success.' : 'Failed to send message.';
 
                     textMessage = getMsg(args, 1);
@@ -73,7 +73,7 @@ disClient.on('message', msg => {
                     break;
                 // !call
                 case 'call':
-                    var num = getInput(args[0]);
+                    var num = getInput(args[0], msg.author.username, msg.author.id);
                     var msg1 = (num) ? 'Success.' : 'Failed to send message.';
 
 
@@ -102,7 +102,7 @@ disClient.on('message', msg => {
                 //!mastercall (only works for certain people)
                 case 'mastercall':
                     if (msg.author.id == discIds.colin) {
-                        var num = getInput(args[0]);
+                        var num = getInput(args[0], msg.author.username, msg.author.id);
                         var msg1 = (num) ? 'Success.' : 'Failed to send message.';
 
 
@@ -131,7 +131,7 @@ disClient.on('message', msg => {
                     break;
                 //!linkcall
                 case 'linkcall':
-                    var num = getInput(args[0]);
+                    var num = getInput(args[0], msg.author.username, msg.author.id);
                     var msg1 = (num) ? 'Success.' : 'Failed to send message.';
 
 
@@ -385,12 +385,30 @@ async function getRedditPost(msg, sub) {
     }
 }
 
-function getInput(data) {
-    if (!data) {
-        return;
+function getInput(data, user, id) {
+    try {
+        if (!data) {
+            return;
+        }
+        var nums = data.toLowerCase();
+        var obj = user + id + 'contacts';
+        var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
+        var parsed = JSON.parse(contactList);
+        if (parsed[nums]) {
+            return parsed[nums];
+        } else if (data.length === 10 && !isNaN(data)) {
+            return data;
+        } else {
+            return 0;
+        }
+    } catch (err) {
+        if (data.length === 10 && !isNaN(data)) {
+            return data;
+        } else {
+            return 0;
+        }
     }
-    var nums = data.toLowerCase();
-
+    /*
     switch (nums) {
         case 'josh':
             return savedNums.josh;
@@ -412,7 +430,7 @@ function getInput(data) {
             } else {
                 return 0;
             }
-    }
+    }*/
     
 }
 
