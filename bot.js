@@ -182,7 +182,7 @@ disClient.on('message', msg => {
                     break;
             }
             //Logging command
-            log(msg.author.username, msg.content);
+            log(msg.author.username, msg.content, msg);
         }
     }
 });
@@ -198,7 +198,7 @@ function getMsg(args, start) {
     return textMessage;
 }
 
-function contact(user, name, number) {
+function contact(user, name, number, msg) {
     var obj = user + 'contacts';
     try {
         var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
@@ -207,6 +207,7 @@ function contact(user, name, number) {
 
         parsed = JSON.stringify(parsed);
         fs.writeFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json', parsed);
+        msg.reply("Contact saved.");
 
     }catch(err){
         console.log(err);
