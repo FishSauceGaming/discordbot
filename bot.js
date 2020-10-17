@@ -158,7 +158,7 @@ disClient.on('message', msg => {
                     break;
                 //!help
                 case 'help':
-                    msg.reply("\n\t\t\t\tCommand List\n!text {name/number} {message}\n!call {number/name} {message}\n!meme\n!reddit {subreddit}");
+                    msg.reply("\n\t\t\t\tCommand List\n!text {name/number} {message}\n!call {number/name} {message}\n!meme\n!reddit {subreddit}\n!addcontact {name} {number}\n!readcontacts\n!rmcontact {name}");
                     break;
                 //!meme
                 case 'meme':
@@ -178,11 +178,17 @@ disClient.on('message', msg => {
                 case 'xml':
                     createMsgXML(msg.author.username, getMsg(args, 1));
                     break;
+                //!addcontact
                 case 'addcontact':
                     contact(msg.author.username + msg.author.id, args[0], args[1], msg)
                     break;
+                //!readcontacts
                 case 'readcontacts':
                     readContactList(msg.author.username, msg.author.id, msg);
+                    break;
+                case 'removecontact':
+                    RemoveContact(msg.author.username + msg.author.id, msg);
+                    break;
             }
             //Logging command
             log(msg.author.username + msg.author.id, msg.content);
@@ -251,6 +257,22 @@ function contact(user, name, number, msg) {
         var parsed = JSON.stringify(newObj);
         fs.writeFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json', parsed);
         msg.reply("Contact saved.");
+    }
+}
+
+function RemoveContact(user, name) {
+    var obj = user + 'contacts';
+    try {
+        var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
+        var parsed = JSON.parse(contactList);
+        delete parsed.name;
+
+        parsed = JSON.stringify(parsed);
+        fs.writeFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json', parsed);
+        msg.reply("Contact deleted.");
+
+    } catch (err) {
+        msg.reply("Could not delete contact.");
     }
 }
 
