@@ -186,7 +186,7 @@ disClient.on('message', msg => {
                 case 'readcontacts':
                     readContactList(msg.author.username, msg.author.id, msg);
                     break;
-                case 'removecontact':
+                case 'rmcontact':
                     RemoveContact(msg.author.username + msg.author.id, args[0], msg);
                     break;
             }
@@ -265,7 +265,7 @@ function RemoveContact(user, name, msg) {
     try {
         var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
         var parsed = JSON.parse(contactList);
-        delete parsed.name;
+        delete parsed[name];
 
         parsed = JSON.stringify(parsed);
         fs.writeFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json', parsed);
