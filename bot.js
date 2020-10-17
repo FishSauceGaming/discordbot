@@ -209,10 +209,13 @@ function readContactList(user, id, msg) {
 
     var body = '';
     var i = 1;
-    for (property in parsed) {
+
+    var keys = Object.keys(parsed);
+
+    for (property in keys) {
         stri = i.toString();
         console.log(stri)
-        body = body.concat(ntm[stri] + ": " + parsed + " - "+ parsed[property] + '\n');
+        body = body.concat(ntm[stri] + ": " + property + " - "+ parsed[property] + '\n');
         i++;
     }
 
