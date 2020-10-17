@@ -200,8 +200,7 @@ function getMsg(args, start) {
 
 function contact(user, name, number, msg) {
     var obj = user + 'contacts';
-    var file = new File('/home/colin/Desktop/discordbotjson/' + obj + '.json');
-    if (file.exists()) {
+    try {
         var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
         var parsed = JSON.parse(contactList);
         parsed[name] = number;
@@ -209,9 +208,9 @@ function contact(user, name, number, msg) {
         parsed = JSON.stringify(parsed);
         fs.writeFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json', parsed);
         msg.reply("Contact saved.");
-    } else {
+
+    } catch (err) {
         var newObj = { name: number };
-        console.log(newObj);
         var parsed = JSON.stringify(newObj);
         fs.writeFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json', parsed);
         msg.reply("Contact saved.");
