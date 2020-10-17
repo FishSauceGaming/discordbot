@@ -207,7 +207,7 @@ function readContactList(user, msg) {
     var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
     var parsed = JSON.parse(contactList);
 
-    var body;
+    var body = '';
     var i = 1;
     for (property in parsed) {
         body = body.concat(numsToEmoji.i + ": " + parsed[property] + '\n');
