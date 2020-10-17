@@ -241,6 +241,7 @@ function readContactList(user, id, msg) {
 }
 
 function contact(user, name, number, msg) {
+    name = name.toLowerCase();
     var obj = user + 'contacts';
     try {
         var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
@@ -261,6 +262,7 @@ function contact(user, name, number, msg) {
 }
 
 function RemoveContact(user, name, msg) {
+    name = name.toLowerCase();
     var obj = user + 'contacts';
     try {
         var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
