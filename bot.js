@@ -204,7 +204,7 @@ function contact(user, name, number) {
     console.log('/home/colin/Desktop/discordbotjson/' + obj + '.json');
     try {
         var contactList = require('/home/colin/Desktop/discordbotjson/' + obj + '.json');
-        contactList.add(temp)
+        contactList.push(temp)
     }catch(err){
         console.log(err);
     }
