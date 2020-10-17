@@ -203,7 +203,7 @@ function contact(user, name, number) {
     console.log('/home/colin/Desktop/discordbotjson/' + obj + '.json');
     try {
         var contactList = require('/home/colin/Desktop/discordbotjson/' + obj + '.json');
-        contactList[name] = number
+        contactList[name] = {name : number};
     }catch(err){
         console.log(err);
     }
