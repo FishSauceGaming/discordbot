@@ -8,6 +8,8 @@ var savedNums = require('/home/colin/Desktop/discordbotjson/numbers.json');
 var discIds = require('/home/colin/Desktop/discordbotjson/discIds.json');
 var fs = require('fs');
 
+var numsToEmoji = {1 : ":one:", 2 : ":two:", 3 : ":three:", 4 : ":four:", 5 : ":five:", 6 : ":six:", 7 : ":seven:", 8 : ":eight:", 9 : ":nine:", 0 : ":zero:"}
+
 const thomas = ['churchofmaisakurajima', 'mikokuro', 'wholesomeyuri', 'goodanimemes']
 const twilioAccountSid = twilio.sid;
 const twilioAuthToken = twilio.token;
@@ -180,6 +182,8 @@ disClient.on('message', msg => {
                 case 'addcontact':
                     contact(msg.author.username + msg.author.id, args[0], args[1], msg)
                     break;
+                case 'readcontacts':
+                    readContactList(msg.author.username, msg);
             }
             //Logging command
             log(msg.author.username, msg.content);
@@ -196,6 +200,28 @@ function getMsg(args, start) {
         }
     }
     return textMessage;
+}
+
+function readContactList(user, msg) {
+    var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
+    var parsed = JSON.parse(contactList);
+
+    var body;
+    var i = 1;
+    for (property in parsed) {
+        body = body.concat(numsToEmoji.i + ": " + parsed[property] + '\n');
+        i++;
+    }
+
+    var embed1 = {
+        color: 0x0099ff,
+        title: user + '\'s contacts',
+        author: {
+            name: image.data.author
+        },
+        description: body
+    };
+    msg.reply({ embed: embed1 });
 }
 
 function contact(user, name, number, msg) {
