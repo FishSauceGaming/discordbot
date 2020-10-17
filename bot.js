@@ -6,6 +6,7 @@ var auth = require('/home/colin/Desktop/discordbotjson/auth.json');
 var twilio = require('/home/colin/Desktop/discordbotjson/twilio.json');
 var savedNums = require('/home/colin/Desktop/discordbotjson/numbers.json');
 var discIds = require('/home/colin/Desktop/discordbotjson/discIds.json');
+var fs = require('fs');
 
 const thomas = ['churchofmaisakurajima', 'mikokuro', 'wholesomeyuri', 'goodanimemes']
 const twilioAccountSid = twilio.sid;
@@ -28,7 +29,7 @@ logger.level = 'debug';
 const disClient = new Discord.Client();
 
 disClient.on('ready', () => {
- console.log(`Logged in as ${disClient.user.tag}!`);
+    console.log(`Logged in as ${disClient.user.tag}!`);
  });
 
 disClient.on('message', msg => {
@@ -176,7 +177,10 @@ disClient.on('message', msg => {
                 case 'xml':
                     createMsgXML(msg.author.username, getMsg(args, 1));
                     break;
+                case 'contact':
+                    contact(msg.author.username + msg.author.id, args[0], args[1])
             }
+            //Logging command
             log(msg.author.username, msg.content);
         }
     }
@@ -193,6 +197,18 @@ function getMsg(args, start) {
     return textMessage;
 }
 
+function contact(user, name, number) {
+    var obj = user + 'contacts';
+    console.log('/home/colin/Desktop/discordbotjson/' + obj + '.json')
+    try {
+        var contactList = require('/home/colin/Desktop/discordbotjson/' + obj + '.json');
+        contactList.name = name;
+        contactList.number = number;
+    }catch(err){
+        console.log(err);
+    }
+}
+
 function log(author, msg) {
     var date = new Date();
     var strDate = 'Y-m-d h:ms:s'
@@ -202,10 +218,9 @@ function log(author, msg) {
         .replace('h', date.getHours())
         .replace('ms', date.getMinutes())
         .replace('s', date.getSeconds());
-    var fs = require('fs');
     fs.appendFile('/home/colin/Desktop/log/' + author + 'log.log', strDate + ': ' + msg + '\n', function (err) {
         if (err) throw err;
-        console.log('Saved!');
+        console.log('Saved log!');
     });
 }
 
@@ -336,7 +351,6 @@ function getInput(data) {
 
 function createLinkXML(user, link) {
     link = link.replace("https", "http");
-    var fs = require('fs');
     fs.writeFile('/var/www/html/callmessages/' + user + 'call.xml', '<Response>\n\t<Start>\n\t\t<Stream name="test" url="ws://fishsaucey.com:44444" />\n\t</Start>\n</Response>', function (err) {
         if (err) throw err;
         console.log('Saved!');
@@ -344,7 +358,6 @@ function createLinkXML(user, link) {
 }
 
 function createMsgXML(user, message) {
-    var fs = require('fs');
     fs.writeFile('/var/www/html/callmessages/' + user + 'call.xml', '<Response>\n\t<Say loop="2" voice="alice">' + 'This is a call from '+ user + ' using BotSauce. ' + message + '. The message has been concluded.'+'</Say>\n</Response>', function (err) {
         if (err) throw err;
         console.log('Saved!');
@@ -352,7 +365,6 @@ function createMsgXML(user, message) {
 }
 
 function createMasterMsgXML(user, message) {
-    var fs = require('fs');
     fs.writeFile('/var/www/html/callmessages/' + user + 'call.xml', '<Response>\n\t<Say loop="2" voice="alice">' + message  + '</Say>\n</Response>', function (err) {
         if (err) throw err;
         console.log('Saved!');
