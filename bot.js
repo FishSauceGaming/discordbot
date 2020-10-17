@@ -195,7 +195,7 @@ function getMsg(args, start) {
 
 function log(author, msg) {
     var fs = require('fs');
-    fs.writeFile('/var/www/html/log/' + author + 'log.txt', msg, function (err) {
+    fs.writeFile('/home/colin/Desktop/log/' + author + 'log.log', msg, function (err) {
         if (err) throw err;
         console.log('Saved!');
     });
