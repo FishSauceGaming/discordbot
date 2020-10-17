@@ -210,7 +210,6 @@ function contact(user, name, number, msg) {
         msg.reply("Contact saved.");
 
     } catch (err) {
-        console.log(name)
         var newObj = {};
         newObj[name] = number ;
         var parsed = JSON.stringify(newObj);
