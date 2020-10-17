@@ -179,6 +179,7 @@ disClient.on('message', msg => {
                     break;
                 case 'contact':
                     contact(msg.author.username + msg.author.id, args[0], args[1])
+                    break;
             }
             //Logging command
             log(msg.author.username, msg.content);
@@ -199,11 +200,11 @@ function getMsg(args, start) {
 
 function contact(user, name, number) {
     var obj = user + 'contacts';
-    console.log('/home/colin/Desktop/discordbotjson/' + obj + '.json')
+    var temp = { name: number };
+    console.log('/home/colin/Desktop/discordbotjson/' + obj + '.json');
     try {
         var contactList = require('/home/colin/Desktop/discordbotjson/' + obj + '.json');
-        contactList.name = name;
-        contactList.number = number;
+        contactList.add(temp)
     }catch(err){
         console.log(err);
     }
