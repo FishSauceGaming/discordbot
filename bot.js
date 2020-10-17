@@ -200,10 +200,14 @@ function getMsg(args, start) {
 
 function contact(user, name, number) {
     var obj = user + 'contacts';
-    console.log('/home/colin/Desktop/discordbotjson/' + obj + '.json');
     try {
-        var contactList = require('/home/colin/Desktop/discordbotjson/' + obj + '.json');
-        contactList[name] = {name : number};
+        var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
+        var parsed = JSON.parse(contactlist);
+        parsed[name] = number;
+
+        parsed = JSON.stringify(parsed);
+        fs.writeFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json', parsed);
+
     }catch(err){
         console.log(err);
     }
