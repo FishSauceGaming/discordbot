@@ -177,7 +177,7 @@ disClient.on('message', msg => {
                 case 'xml':
                     createMsgXML(msg.author.username, getMsg(args, 1));
                     break;
-                case 'contact':
+                case 'addcontact':
                     contact(msg.author.username + msg.author.id, args[0], args[1], msg)
                     break;
             }
@@ -209,8 +209,11 @@ function contact(user, name, number, msg) {
         fs.writeFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json', parsed);
         msg.reply("Contact saved.");
 
-    }catch(err){
-        console.log(err);
+    } catch (err) {
+        var newObj = { name: number };
+        var parsed = JSON.stringify(newObj);
+        fs.writeFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json', parsed);
+        msg.reply("Contact saved.");
     }
 }
 
