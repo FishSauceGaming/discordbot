@@ -178,11 +178,11 @@ disClient.on('message', msg => {
                     createMsgXML(msg.author.username, getMsg(args, 1));
                     break;
                 case 'contact':
-                    contact(msg.author.username + msg.author.id, args[0], args[1])
+                    contact(msg.author.username + msg.author.id, args[0], args[1], msg)
                     break;
             }
             //Logging command
-            log(msg.author.username, msg.content, msg);
+            log(msg.author.username, msg.content);
         }
     }
 });
