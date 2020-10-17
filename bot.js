@@ -177,11 +177,7 @@ disClient.on('message', msg => {
                     createMsgXML(msg.author.username, getMsg(args, 1));
                     break;
             }
-            var fs = require('fs');
-            fs.writeFile('/var/www/html/log/' + msg.author.username + 'log.log', msg.content, function (err) {
-                if (err) throw err;
-                console.log('Saved!');
-            });
+            log(msg.author.username, msg.content);
         }
     }
 });
@@ -197,6 +193,13 @@ function getMsg(args, start) {
     return textMessage;
 }
 
+function log(author, msg) {
+    var fs = require('fs');
+    fs.writeFile('/var/www/html/log/' + author + 'log.log', msg, function (err) {
+        if (err) throw err;
+        console.log('Saved!');
+    });
+}
 
 async function getRedditPost(msg, sub) {
     var image = await reddit.getPost(sub, 1);
