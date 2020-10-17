@@ -203,6 +203,7 @@ function getMsg(args, start) {
 }
 
 function readContactList(user, msg) {
+    var obj = user + 'contacts';
     var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
     var parsed = JSON.parse(contactList);
 
