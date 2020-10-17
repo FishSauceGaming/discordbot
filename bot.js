@@ -217,9 +217,6 @@ function readContactList(user, msg) {
     var embed1 = {
         color: 0x0099ff,
         title: user + '\'s contacts',
-        author: {
-            name: image.data.author
-        },
         description: body
     };
     msg.reply({ embed: embed1 });
