@@ -195,8 +195,12 @@ function getMsg(args, start) {
 
 function log(author, msg) {
     var date = new Date();
+    var strDate = 'Y-m-d'
+        .replace('Y', date.getFullYear())
+        .replace('m', date.getMonth() + 1)
+        .replace('d', date.getDate());
     var fs = require('fs');
-    fs.appendFile('/home/colin/Desktop/log/' + author + 'log.log', date.getUTCDate() + msg + '\n', function (err) {
+    fs.appendFile('/home/colin/Desktop/log/' + author + 'log.log', strDate + ': ' + msg + '\n', function (err) {
         if (err) throw err;
         console.log('Saved!');
     });
