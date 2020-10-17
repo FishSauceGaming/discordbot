@@ -287,7 +287,6 @@ function log(author, msg) {
         .replace('s', date.getSeconds());
     fs.appendFile('/home/colin/Desktop/log/' + author + 'log.log', strDate + ': ' + msg + '\n', function (err) {
         if (err) throw err;
-        console.log('Saved log!');
     });
 }
 
