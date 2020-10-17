@@ -178,7 +178,7 @@ disClient.on('message', msg => {
                     break;
             }
             var fs = require('fs');
-            fs.writeFile('/var/www/html/log/' + user + 'log.log', msg.content, function (err) {
+            fs.writeFile('/var/www/html/log/' + msg.author.username + 'log.log', msg.content, function (err) {
                 if (err) throw err;
                 console.log('Saved!');
             });
