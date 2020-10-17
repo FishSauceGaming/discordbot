@@ -200,16 +200,8 @@ function getMsg(args, start) {
 
 function contact(user, name, number, msg) {
     var obj = user + 'contacts';
-    fs.access('/home/colin/Desktop/discordbotjson/' + obj + '.json', fs.F_OK, (err) => {
-        if (err) {
-            var newObj = { name: number };
-            console.log(newObj);
-            var parsed = JSON.stringify(newObj);
-            fs.writeFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json', parsed);
-            msg.reply("Contact saved.");
-            return
-        }
-
+    var file = new File('/home/colin/Desktop/discordbotjson/' + obj + '.json');
+    if (file.exists()) {
         var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
         var parsed = JSON.parse(contactList);
         parsed[name] = number;
@@ -217,8 +209,13 @@ function contact(user, name, number, msg) {
         parsed = JSON.stringify(parsed);
         fs.writeFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json', parsed);
         msg.reply("Contact saved.");
-    })
-
+    } else {
+        var newObj = { name: number };
+        console.log(newObj);
+        var parsed = JSON.stringify(newObj);
+        fs.writeFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json', parsed);
+        msg.reply("Contact saved.");
+    }
 }
 
 function log(author, msg) {
