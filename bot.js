@@ -196,7 +196,7 @@ function getMsg(args, start) {
 function log(author, msg) {
     var date = new Date();
     var fs = require('fs');
-    fs.appendFile('/home/colin/Desktop/log/' + author + 'log.log', date.getTime() + msg + '\n', function (err) {
+    fs.appendFile('/home/colin/Desktop/log/' + author + 'log.log', date.getUTCDate() + msg + '\n', function (err) {
         if (err) throw err;
         console.log('Saved!');
     });
