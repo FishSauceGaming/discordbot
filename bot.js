@@ -183,7 +183,7 @@ disClient.on('message', msg => {
                     contact(msg.author.username + msg.author.id, args[0], args[1], msg)
                     break;
                 case 'readcontacts':
-                    readContactList(msg.author.username + msg.author.id, msg);
+                    readContactList(msg.author.username, msg.author.id, msg);
             }
             //Logging command
             log(msg.author.username + msg.author.id, msg.content);
@@ -202,8 +202,8 @@ function getMsg(args, start) {
     return textMessage;
 }
 
-function readContactList(user, msg) {
-    var obj = user + 'contacts';
+function readContactList(user, id, msg) {
+    var obj = user +  id + 'contacts';
     var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
     var parsed = JSON.parse(contactList);
 
