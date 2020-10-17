@@ -212,6 +212,8 @@ function readContactList(user, id, msg) {
 
     var keys = Object.keys(parsed);
 
+    console.log(keys);
+
     for (property in keys) {
         stri = i.toString();
         console.log(stri)
