@@ -202,31 +202,36 @@ function getMsg(args, start) {
 }
 
 function readContactList(user, id, msg) {
-    var ntm = { '1': ":one:", '2': ":two:", '3': ":three:", '4': ":four:", '5': ":five:", '6': ":six:", '7': ":seven:", '8': ":eight:", '9': ":nine:", '0': ":zero:" };
-    var obj = user +  id + 'contacts';
-    var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
-    var parsed = JSON.parse(contactList);
+    try {
+        var ntm = { '1': ":one:", '2': ":two:", '3': ":three:", '4': ":four:", '5': ":five:", '6': ":six:", '7': ":seven:", '8': ":eight:", '9': ":nine:", '0': ":zero:" };
+        var obj = user + id + 'contacts';
+        var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
+        var parsed = JSON.parse(contactList);
 
-    var body = '';
-    var i = 1;
+        var body = '';
+        var i = 1;
 
-    var keys = Object.keys(parsed);
+        var keys = Object.keys(parsed);
 
 
-    for (property in keys) {
-        console.log(property);
-        stri = i.toString();
-        console.log(stri)
-        body = body.concat(ntm[stri] + ": " + keys[property] + " - "+ parsed[keys[property]] + '\n');
-        i++;
+        for (property in keys) {
+            console.log(property);
+            stri = i.toString();
+            console.log(stri)
+            body = body.concat(ntm[stri] + ": " + keys[property] + " - " + parsed[keys[property]] + '\n');
+            i++;
+        }
+
+        var embed1 = {
+            color: 0x0099ff,
+            title: user + '\'s contacts',
+            description: body
+        };
+        msg.reply({ embed: embed1 });
+    } catch (err) {
+        msg.reply("Could not post contacts.");
     }
 
-    var embed1 = {
-        color: 0x0099ff,
-        title: user + '\'s contacts',
-        description: body
-    };
-    msg.reply({ embed: embed1 });
 }
 
 function contact(user, name, number, msg) {
