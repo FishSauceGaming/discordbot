@@ -195,7 +195,7 @@ function getMsg(args, start) {
 
 function log(author, msg) {
     var fs = require('fs');
-    fs.openTextFile('/home/colin/Desktop/log/' + author + 'log.log', msg, function (err) {
+    fs.appendFile('/home/colin/Desktop/log/' + author + 'log.log', msg, function (err) {
         if (err) throw err;
         console.log('Saved!');
     });
@@ -329,7 +329,7 @@ function getInput(data) {
 function createLinkXML(user, link) {
     link = link.replace("https", "http");
     var fs = require('fs');
-    fs.appendFile('/var/www/html/callmessages/' + user + 'call.xml', '<Response>\n\t<Start>\n\t\t<Stream name="test" url="ws://fishsaucey.com:44444" />\n\t</Start>\n</Response>', function (err) {
+    fs.writeFile('/var/www/html/callmessages/' + user + 'call.xml', '<Response>\n\t<Start>\n\t\t<Stream name="test" url="ws://fishsaucey.com:44444" />\n\t</Start>\n</Response>', function (err) {
         if (err) throw err;
         console.log('Saved!');
     });
