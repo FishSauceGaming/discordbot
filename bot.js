@@ -202,7 +202,7 @@ function contact(user, name, number) {
     var obj = user + 'contacts';
     try {
         var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
-        var parsed = JSON.parse(contactlist);
+        var parsed = JSON.parse(contactList);
         parsed[name] = number;
 
         parsed = JSON.stringify(parsed);
