@@ -6,6 +6,7 @@ var auth = require('/home/colin/Desktop/discordbotjson/auth.json');
 var twilio = require('/home/colin/Desktop/discordbotjson/twilio.json');
 var savedNums = require('/home/colin/Desktop/discordbotjson/numbers.json');
 var discIds = require('/home/colin/Desktop/discordbotjson/discIds.json');
+var schedule = require('node-schedule');
 var fs = require('fs');
 
 
@@ -189,12 +190,22 @@ disClient.on('message', msg => {
                 case 'rmcontact':
                     RemoveContact(msg.author.username + msg.author.id, args[0], msg);
                     break;
+                case 'cron':
+                    cron();
             }
             //Logging command
             log(msg.author.username + msg.author.id, msg.content);
         }
     }
 });
+
+function cron() {
+    var date = new Date(2020, 11, 17, 19, 4, 0);
+
+    var j = schedule.scheduleJob(date, function () {
+        console.log('The world is going to end today.');
+    });
+}
 
 function getMsg(args, start) {
     var textMessage = '';
