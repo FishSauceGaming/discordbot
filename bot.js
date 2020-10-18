@@ -192,6 +192,7 @@ disClient.on('message', msg => {
                     break;
                 case 'cron':
                     cron();
+                    break;
             }
             //Logging command
             log(msg.author.username + msg.author.id, msg.content);
@@ -200,10 +201,8 @@ disClient.on('message', msg => {
 });
 
 function cron() {
-    var date = new Date(2020, 11, 17, 19, 4, 0);
-
-    var j = schedule.scheduleJob(date, function () {
-        console.log('The world is going to end today.');
+    var j = schedule.scheduleJob({ hour: 19, minute: 05, dayOfWeek: 6 }, function () {
+        console.log('Time for tea!');
     });
 }
 
