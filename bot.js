@@ -201,7 +201,8 @@ disClient.on('message', msg => {
 });
 
 function cron() {
-    var j = schedule.scheduleJob({ hour: 19, minute: 05, dayOfWeek: 6 }, function () {
+    console.log('scheduled job');
+    var j = schedule.scheduleJob({ hour: 19, minute: 06, dayOfWeek: 6 }, function () {
         console.log('Time for tea!');
     });
 }
