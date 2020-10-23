@@ -272,10 +272,12 @@ function readContactList(user, id, msg) {
 function contact(user, name, number, msg) {
     name = name.toLowerCase();
     var obj = user + 'contacts';
+    let cleaned = ('' + number).replace(/\D/g, '');
+    let newNum = cleaned.match(/^(\d{10})$/);
     try {
         var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
         var parsed = JSON.parse(contactList);
-        parsed[name] = number;
+        parsed[name] = newNum;
 
         parsed = JSON.stringify(parsed);
         fs.writeFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json', parsed);
@@ -283,7 +285,7 @@ function contact(user, name, number, msg) {
 
     } catch (err) {
         var newObj = {};
-        newObj[name] = number ;
+        newObj[name] = newNum;
         var parsed = JSON.stringify(newObj);
         fs.writeFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json', parsed);
         msg.reply("Contact saved.");
