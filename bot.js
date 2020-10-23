@@ -230,12 +230,12 @@ function readContactList(user, id, msg) {
 
         var keys = Object.keys(parsed);
 
-        var num = "";
         for (property in keys) {
+            var num = "";
             console.log(property);
             stri = i.toString();
             for (j = 0; j < stri.length; j++) {
-                num = num.concat(stri[j])
+                num = num.concat(ntm[stri[j]])
             }
             console.log(stri)
             body = body.concat(num + ": " + keys[property] + " - " + parsed[keys[property]] + '\n');
