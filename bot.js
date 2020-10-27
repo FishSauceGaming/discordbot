@@ -83,7 +83,7 @@ disClient.on('message', msg => {
                     if (
                         twilioClient.calls
                             .create({
-                                url: ('http://fishsaucey.com/callmessages/' + msg.author.username + 'call.xml'),
+                                url: ('https://fishsaucey.com/callmessages/' + msg.author.username + 'call.xml'),
                                 to: '+1' + num,
                                 from: '+12019077471'
                             })
@@ -252,7 +252,6 @@ function readContactList(user, id, msg) {
 }
 
 function contact(user, name, number, msg) {
-    name = name.toLowerCase();
     var obj = user + 'contacts';
     try {
         var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
