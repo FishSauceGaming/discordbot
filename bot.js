@@ -112,7 +112,7 @@ disClient.on('message', msg => {
                         if (
                             twilioClient.calls
                                 .create({
-                                    url: ('http://fishsaucey.com/callmessages/' + msg.author.username + 'call.xml'),
+                                    url: ('https://www.fishsaucey.com/callmessages/' + msg.author.username + 'call.xml'),
                                     to: '+1' + num,
                                     from: '+12019077471'
                                 })
@@ -141,7 +141,7 @@ disClient.on('message', msg => {
                     if (
                         twilioClient.calls
                             .create({
-                                url: ('http://fishsaucey.com/callmessages/' + msg.author.username + 'call.xml'),
+                                url: ('https://www.fishsaucey.com/callmessages/' + msg.author.username + 'call.xml'),
                                 to: '+1' + num,
                                 from: '+12019077471'
                             })
