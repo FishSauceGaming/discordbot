@@ -218,6 +218,35 @@ function getMsg(args, start) {
     return textMessage;
 }
 
+function formatPhoneNumber(str){
+    //Filter only numbers from the input
+    let cleaned = ('' + str).replace(/\D/g, '');
+
+    //Check if the input is of correct length
+    let match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+
+    if (match) {
+        return '(' + match[1] + ') ' + match[2] + '-' + match[3]
+    };
+
+    return null
+};
+
+function formatNumNoParentheses(str) {
+    //Filter only numbers from the input
+    let cleaned = ('' + str).replace(/\D/g, '');
+
+    //Check if the input is of correct length
+    let match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+
+    if (match) {
+        return match[1] + match[2] + match[3];
+    };
+
+    return null
+};
+
+
 function readContactList(user, id, msg) {
     try {
         var ntm = { '1': ":one:", '2': ":two:", '3': ":three:", '4': ":four:", '5': ":five:", '6': ":six:", '7': ":seven:", '8': ":eight:", '9': ":nine:", '0': ":zero:" };
@@ -230,12 +259,15 @@ function readContactList(user, id, msg) {
 
         var keys = Object.keys(parsed);
 
-
         for (property in keys) {
+            var num = "";
             console.log(property);
             stri = i.toString();
+            for (j = 0; j < stri.length; j++) {
+                num = num.concat(ntm[stri[j]])
+            }
             console.log(stri)
-            body = body.concat(ntm[stri] + ": " + keys[property] + " - " + parsed[keys[property]] + '\n');
+            body = body.concat(num + ": " + keys[property] + " - " + formatPhoneNumber(parsed[keys[property]]) + '\n');
             i++;
         }
 
@@ -256,7 +288,7 @@ function contact(user, name, number, msg) {
     try {
         var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
         var parsed = JSON.parse(contactList);
-        parsed[name] = number;
+        parsed[name] = formatNumNoParentheses(number);
 
         parsed = JSON.stringify(parsed);
         fs.writeFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json', parsed);
@@ -264,7 +296,7 @@ function contact(user, name, number, msg) {
 
     } catch (err) {
         var newObj = {};
-        newObj[name] = number ;
+        newObj[name] = formatNumNoParentheses(number);
         var parsed = JSON.stringify(newObj);
         fs.writeFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json', parsed);
         msg.reply("Contact saved.");
