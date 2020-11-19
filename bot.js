@@ -434,8 +434,8 @@ function getInput(data, user, id) {
             return;
         }
         var nums = data.toLowerCase();
-        var obj = user + id + 'contacts';
-        var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
+        var obj = id + 'contacts';
+        var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/contacts/' + obj + '.json');
         var parsed = JSON.parse(contactList);
         if (parsed[nums]) {
             return parsed[nums];
