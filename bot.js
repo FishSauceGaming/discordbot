@@ -205,7 +205,7 @@ disClient.on('message', msg => {
 
 function cron(team, monthVar, dayVar, hourVar, minuteVar, msg1, msg) {
     msg.reply('scheduled...');
-    schedule.scheduleJob({ hour: 19, minute: 40, dayOfWeek:4 }, function () {
+    schedule.scheduleJob({ hour: 19, minute: 42, day: 18 }, function () {
         msg.reply("works")
     });
 }
