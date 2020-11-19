@@ -193,16 +193,19 @@ disClient.on('message', msg => {
                 case 'cron':
                     cron();
                     break;
+                case 'match':
+                    cron(args[0], args[1], args[2], args[3], args[4], args[5].slice())
+                    break;
             }
             //Logging command
-            log(msg.author.id, msg.content);
+            log(msg.author.id, msg.content, msg);
         }
     }
 });
 
-function cron() {
+async function cron(team, monthVar, dayVar, hourVar, minuteVar, msg) {
     console.log('scheduled job');
-    var j = schedule.scheduleJob({ hour: 19, minute: 06, dayOfWeek: 6 }, function () {
+    schedule.scheduleJob({ hour: hourVar, minute: minuteVar, dayOfWeek:dayVar, month: monthVar}, function () {
         console.log('Time for tea!');
     });
 }
