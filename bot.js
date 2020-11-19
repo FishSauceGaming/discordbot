@@ -53,24 +53,9 @@ disClient.on('message', msg => {
                 // !text
                 case 'text':
                     var num = getInput(args[0],msg.author.username, msg.author.id);
-                    var msg1 = (num) ? 'Success.' : 'Failed to send message.';
-
+                    var msg1 = (num) ? true : false;
                     textMessage = getMsg(args, 1);
-
-                    if (
-                        twilioClient.messages
-                            .create({ body: msg.author.username + ' in \'' + msg.guild.name + '\' says: ' + textMessage + '. Please do not reply to this message.', from: '+12019077471', to: '+1' + num })
-                            .then(message => console.log(message.sid))) {
-                        if (msg1) {
-                            try {
-                                msg.reply(msg1 + ' Message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ');
-                            } catch {
-                                msg.reply(msg1 + ' Message sent by ' + msg.author.username);
-                            }
-                        }
-                    } else {
-                        msg.reply('Failed to send message.');
-                    }
+                    text(num, msg, textMessage, msg1);
                     break;
                 // !call
                 case 'call':
@@ -204,15 +189,33 @@ disClient.on('message', msg => {
 });
 
 function cron(team, monthVar, dayVar, hourVar, minuteVar, msg1, msg) {
-    var varYear = new Date().getFullYear();
-    var varDate = new Date(2018, 11, 24, 10-6, 33, 30, 0);
-    console.log(varDate);
-    var date = new Date(parseInt(varYear), parseInt(monthVar) - 1, parseInt(dayVar), parseInt(hourVar) - 6, parseInt(minuteVar), 0);
-    console.log(date);
+
     msg.reply('scheduled...');
     schedule.schedule(("0" + " " + minuteVar + " " + hourVar + " " + dayVar + " " + monthVar + " *"), () => {
         msg.reply("works " + msg1);
     });
+}
+
+function text(num, msg, textMessage, msg1) {
+
+    if (
+        twilioClient.messages
+            .create({ body: msg.author.username + ' in \'' + msg.guild.name + '\' says: ' + textMessage + '. Please do not reply to this message.', from: '+12019077471', to: '+1' + num })
+            .then(message => console.log(message.sid))) {
+        if (msg1) {
+            try {
+                if (msg1 == true) {
+                    msg.reply(msg1 + ' Message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ');
+                } else {
+                    msg.reply('Failed to send message.');
+                }
+            } catch {
+                msg.reply(msg1 + ' Message sent by ' + msg.author.username);
+            }
+        }
+    } else {
+        msg.reply('Failed to send message.');
+    }
 }
 
 function getMsg(args, start) {
@@ -253,7 +256,6 @@ function formatNumNoParentheses(str) {
 
     return null
 };
-
 
 function readContactList(user, id, msg) {
     try {
