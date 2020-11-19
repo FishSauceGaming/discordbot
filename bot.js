@@ -207,10 +207,10 @@ function cron(team, monthVar, dayVar, hourVar, minuteVar, msg1, msg) {
     var varYear = new Date().getFullYear();
     var varDate = new Date(2018, 11, 24, 10-6, 33, 30, 0);
     console.log(varDate);
-    var varDate = new Date(parseInt(varYear), parseInt(monthVar) - 1, parseInt(dayVar), parseInt(hourVar) - 6, parseInt(minuteVar), 0);
+    var date = new Date(parseInt(varYear), parseInt(monthVar) - 1, parseInt(dayVar), parseInt(hourVar) - 6, parseInt(minuteVar), 0);
     console.log(varDate);
     msg.reply('scheduled...');
-    schedule.scheduleJob(varDate, function () {
+    schedule.scheduleJob(date, function () {
         msg.reply("works " + msg1);
     });
 }
