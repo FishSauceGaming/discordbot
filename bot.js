@@ -194,7 +194,7 @@ disClient.on('message', msg => {
                     cron();
                     break;
                 case 'match':
-                    cron(args[0], args[1], args[2], args[3], args[4], args[5].slice())
+                    cron(args[0], args[1], args[2], args[3], args[4], args[5].slice(), msg)
                     break;
             }
             //Logging command
