@@ -6,7 +6,7 @@ var auth = require('/home/colin/Desktop/discordbotjson/auth.json');
 var twilio = require('/home/colin/Desktop/discordbotjson/twilio.json');
 var savedNums = require('/home/colin/Desktop/discordbotjson/numbers.json');
 var discIds = require('/home/colin/Desktop/discordbotjson/discIds.json');
-var schedule = require('node-schedule');
+var schedule = require('node-cron');
 var fs = require('fs');
 
 
@@ -208,9 +208,9 @@ function cron(team, monthVar, dayVar, hourVar, minuteVar, msg1, msg) {
     var varDate = new Date(2018, 11, 24, 10-6, 33, 30, 0);
     console.log(varDate);
     var date = new Date(parseInt(varYear), parseInt(monthVar) - 1, parseInt(dayVar), parseInt(hourVar) - 6, parseInt(minuteVar), 0);
-    console.log(varDate);
+    console.log(date);
     msg.reply('scheduled...');
-    schedule.scheduleJob(date, function () {
+    schedule.schedule(date, () => {
         msg.reply("works " + msg1);
     });
 }
