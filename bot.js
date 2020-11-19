@@ -181,21 +181,21 @@ disClient.on('message', msg => {
                     break;
                 //!addcontact
                 case 'addcontact':
-                    contact(msg.author.username + msg.author.id, args[0], args[1], msg)
+                    contact(msg.author.id, args[0], args[1], msg)
                     break;
                 //!readcontacts
                 case 'readcontacts':
                     readContactList(msg.author.username, msg.author.id, msg);
                     break;
                 case 'rmcontact':
-                    RemoveContact(msg.author.username + msg.author.id, args[0], msg);
+                    RemoveContact(msg.author.id, args[0], msg);
                     break;
                 case 'cron':
                     cron();
                     break;
             }
             //Logging command
-            log(msg.author.username + msg.author.id, msg.content);
+            log(msg.author.id, msg.content);
         }
     }
 });
@@ -250,8 +250,8 @@ function formatNumNoParentheses(str) {
 function readContactList(user, id, msg) {
     try {
         var ntm = { '1': ":one:", '2': ":two:", '3': ":three:", '4': ":four:", '5': ":five:", '6': ":six:", '7': ":seven:", '8': ":eight:", '9': ":nine:", '0': ":zero:" };
-        var obj = user + id + 'contacts';
-        var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
+        var obj = id + 'contacts';
+        var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/contacts/' + obj + '.json');
         var parsed = JSON.parse(contactList);
 
         var body = '';
@@ -286,19 +286,19 @@ function readContactList(user, id, msg) {
 function contact(user, name, number, msg) {
     var obj = user + 'contacts';
     try {
-        var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json');
+        var contactList = fs.readFileSync('/home/colin/Desktop/discordbotjson/contacts/' + obj + '.json');
         var parsed = JSON.parse(contactList);
         parsed[name] = formatNumNoParentheses(number);
 
         parsed = JSON.stringify(parsed);
-        fs.writeFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json', parsed);
+        fs.writeFileSync('/home/colin/Desktop/discordbotjson/contacts/' + obj + '.json', parsed);
         msg.reply("Contact saved.");
 
     } catch (err) {
         var newObj = {};
         newObj[name] = formatNumNoParentheses(number);
         var parsed = JSON.stringify(newObj);
-        fs.writeFileSync('/home/colin/Desktop/discordbotjson/' + obj + '.json', parsed);
+        fs.writeFileSync('/home/colin/Desktop/discordbotjson/contacts/' + obj + '.json', parsed);
         msg.reply("Contact saved.");
     }
 }
