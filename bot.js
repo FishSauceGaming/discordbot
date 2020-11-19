@@ -192,7 +192,7 @@ function cron(team, monthVar, dayVar, hourVar, minuteVar, msg1, msg) {
 
     msg.reply('scheduled...');
     schedule.schedule(("0" + " " + minuteVar + " " + hourVar + " " + dayVar + " " + monthVar + " *"), () => {
-        msg.reply("works " + msg1);
+        text(2563232653, msg, msg1, true);
     });
 }
 
@@ -205,12 +205,12 @@ function text(num, msg, textMessage, msg1) {
         if (msg1) {
             try {
                 if (msg1 == true) {
-                    msg.reply(msg1 + ' Message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ');
+                    msg.reply('Success, message sent by ' + msg.author.username + ' in \'' + msg.guild.name + '\'. ');
                 } else {
                     msg.reply('Failed to send message.');
                 }
             } catch {
-                msg.reply(msg1 + ' Message sent by ' + msg.author.username);
+                msg.reply('Message sent by ' + msg.author.username);
             }
         }
     } else {
