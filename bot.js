@@ -210,7 +210,7 @@ function cron(team, monthVar, dayVar, hourVar, minuteVar, msg1, msg) {
     var date = new Date(parseInt(varYear), parseInt(monthVar) - 1, parseInt(dayVar), parseInt(hourVar) - 6, parseInt(minuteVar), 0);
     console.log(date);
     msg.reply('scheduled...');
-    schedule.schedule(date, () => {
+    schedule.schedule(("0" + " " + minuteVar + " " + hourVar + " " + dayVar + " " + monthVar + " *"), () => {
         msg.reply("works " + msg1);
     });
 }
