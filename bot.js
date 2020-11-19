@@ -205,7 +205,8 @@ disClient.on('message', msg => {
 
 function cron(team, monthVar, dayVar, hourVar, minuteVar, msg1, msg) {
     var varYear = new Date().getFullYear();
-    var varDate = new Date(varYear, monthVar-1, dayVar, hourVar, minuteVar+1, 0);
+    var varDate = new Date(varYear, monthVar - 1, dayVar, hourVar, minuteVar + 1, 0);
+    console.log(varDate);
     msg.reply('scheduled...');
     schedule.scheduleJob(varDate, function () {
         msg.reply("works " + msg1);
